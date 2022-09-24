@@ -20,7 +20,7 @@ return new class extends Migration
                     ->constrained('users')
                     ->references('id')
                     ->onUpdate('cascade')
-                    ->nullOnDelete();
+                    ->onDelete('cascade');
 
 
             $table->string('order_number')->unique();
