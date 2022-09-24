@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'E-Commerce Islam Massoud'),
 
     /*
     |--------------------------------------------------------------------------
@@ -186,6 +186,9 @@ return [
          * Package Service Providers...
          */
 
+        Spatie\Permission\PermissionServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class
+,
         /*
          * Application Service Providers...
          */
@@ -194,6 +197,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
 
     ],
 
