@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('mobile_number')->nullable()->unique();
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->text('roles_name');
             $table->enum('status', ['inactive' , 'active'])->default('active');
             $table->timestamps();
