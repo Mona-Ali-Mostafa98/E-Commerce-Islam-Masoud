@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
@@ -11,7 +13,7 @@ class Product extends Model
 
     protected $fillable = [
         'product_name' , 'product_model' , 'product_price' ,
-        'best_selling' , 'product_details' , 'status' ,
+        'best_selling' , 'product_details' , 'product_description' , 'status' ,
 
         'slug' , 'rating' , 'options' ,
 
@@ -19,23 +21,13 @@ class Product extends Model
 
     public $translatable = [
         'product_name' , 'product_model' ,
-        'product_details' ,
+        'product_details' , 'product_description'
     ];
 
 
-
-    // Accessors
-    // $product->image_url
-    public function getImageUrlAttribute()
+    public function images()
     {
-        if (!$this->image) {
-            return 'https://www.incathlab.com/images/products/default_product.png';
-        }
-        if (Str::startsWith($this->image, ['http://', 'https://'])) {
-            return $this->image;
-        }
-        return asset('storage/' . $this->image);
+        return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
-
 
 }

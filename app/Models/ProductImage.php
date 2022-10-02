@@ -20,4 +20,19 @@ class ProductImage extends Model
         return $this->belongsTo(Product::class, 'product_id', 'id')->withDefault();
     }
 
+
+
+    // Accessors
+    // $product->product_image_url
+    public function getProductImageUrlAttribute()
+    {
+        if (!$this->product_image) {
+            return 'https://www.incathlab.com/images/products/default_product.png';
+        }
+        if (Str::startsWith($this->product_image, ['http://', 'https://'])) {
+            return $this->product_image;
+        }
+        return asset('storage/product_images/' . $this->product_image);
+    }
+
 }
