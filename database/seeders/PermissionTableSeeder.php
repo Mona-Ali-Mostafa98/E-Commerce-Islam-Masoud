@@ -94,6 +94,12 @@ class PermissionTableSeeder extends Seeder
             'Update User',
             'Delete User',
 
+            'Galleries',
+            'Add Image',
+            'Show Image',
+            'Update Image',
+            'Delete Image',
+
             'List CartS',
             'Show User Cart',
             'Show User Wishlist',
