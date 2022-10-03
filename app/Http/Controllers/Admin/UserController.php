@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UpdateUserRequest;
+use App\Models\Cart;
+use App\Models\Order;
 use App\Models\User;
+use App\Models\Wishlist;
 use App\Traits\UploadImageTrait;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -68,7 +71,11 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        $favorite_products = Wishlist::where('user_id' , $user->id)->with('user','product')->get();
+        $user_orders = Order::where('user_id' , $user->id)->with('user')->get();
+        $cart_products = Cart::where('user_id' , $user->id)->with('user')->get();
+
+        return view('admin.users.show', compact('user' , 'favorite_products' , 'user_orders' , 'cart_products'));
     }
 
 
