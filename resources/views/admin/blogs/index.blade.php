@@ -92,7 +92,7 @@
                                                                 @forelse($blogs as $blog)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
-                                                                        <td><img src="{{ asset('storage/' . $blog->cover_image) }}"
+                                                                        <td><img src="{{ url('storage/' . $blog->cover_image) }}"
                                                                                 alt="" height="60"
                                                                                 width="60"></td>
                                                                         <td class="text-success fw-bold">

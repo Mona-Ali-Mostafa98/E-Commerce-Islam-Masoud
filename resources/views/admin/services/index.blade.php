@@ -72,7 +72,7 @@
                                                                 @foreach ($services as $service)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
-                                                                        <td><img src="{{ asset('storage/' . $service->image) }}"
+                                                                        <td><img src="{{ url('storage/' . $service->image) }}"
                                                                                 alt="" height="60"
                                                                                 width="60"></td>
                                                                         <td class="text-success fw-bold">

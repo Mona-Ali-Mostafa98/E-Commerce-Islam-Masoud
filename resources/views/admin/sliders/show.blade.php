@@ -49,7 +49,7 @@
                                                 <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.Image') }} </td>
                                                 <td>
-                                                    <img id="image" src="{{ asset('storage/' . $slider->image) }}"
+                                                    <img id="image" src="{{ url('storage/' . $slider->image) }}"
                                                         alt="" height="100" width="150">
                                                 </td>
                                             </tr>

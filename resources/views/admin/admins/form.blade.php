@@ -113,7 +113,7 @@
                         </p>
                     @enderror
                 </div>
-                <img id="admin_image" src="{{ asset('storage/' . $admin->image) }}" style="height: 80px; width: 100px;"
+                <img id="admin_image" src="{{ url('storage/' . $admin->image) }}" style="height: 80px; width: 100px;"
                     alt="no admin image uploaded">
             </fieldset>
         </div>

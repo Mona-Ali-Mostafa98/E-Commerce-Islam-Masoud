@@ -49,8 +49,8 @@
                                                 <td class="font-weight-bold">{{ trans('main_translation.Image') }} </td>
                                                 <td>
                                                     <img id="image"
-                                                        src="{{ asset('storage/' . $partner->partner_image) }}"
-                                                        alt="" height="100" width="150">
+                                                        src="{{ url('storage/' . $partner->partner_image) }}" alt=""
+                                                        height="100" width="150">
                                                 </td>
                                             </tr>
                                             <tr>

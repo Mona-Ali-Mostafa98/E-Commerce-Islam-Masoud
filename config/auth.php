@@ -105,7 +105,7 @@ return [
             'throttle' => 60,
         ],
 
-        'users' => [
+        'admins' => [
             'provider' => 'admins',
             'expire' => 10800,
         ],

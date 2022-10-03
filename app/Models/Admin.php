@@ -60,6 +60,6 @@ class Admin extends Authenticatable
         if (Str::startsWith($this->image, ['http://', 'https://'])) {
             return $this->image;
         }
-        return asset('storage/' . $this->image);
+        return url('storage/' . $this->image);
     }
 }

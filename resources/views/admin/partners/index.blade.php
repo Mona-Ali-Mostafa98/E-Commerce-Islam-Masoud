@@ -72,7 +72,7 @@
                                                                 @foreach ($partners as $partner)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
-                                                                        <td><img src="{{ asset('storage/' . $partner->partner_image) }}"
+                                                                        <td><img src="{{ url('storage/' . $partner->partner_image) }}"
                                                                                 alt="" height="60"
                                                                                 width="60"></td>
                                                                         <td class="text-success fw-bold">

@@ -32,7 +32,7 @@ class ProductImage extends Model
         if (Str::startsWith($this->product_image, ['http://', 'https://'])) {
             return $this->product_image;
         }
-        return asset('storage/product_images/' . $this->product_image);
+        return url('storage/product_images/' . $this->product_image);
     }
 
 }

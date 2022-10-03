@@ -50,7 +50,7 @@
                                                     {{ trans('main_translation.CoverImage') }} </td>
                                                 <td>
                                                     <img class="m-1" id="image"
-                                                        src="{{ asset('storage/' . $blog->cover_image) }}" alt=""
+                                                        src="{{ url('storage/' . $blog->cover_image) }}" alt=""
                                                         height="100" width="150">
                                                 </td>
                                             </tr>
@@ -67,7 +67,7 @@
                                                     {{ trans('main_translation.BlogImage') }} </td>
                                                 <td>
                                                     <img class="m-1" id="image"
-                                                        src="{{ asset('storage/' . $blog->image) }}" alt=""
+                                                        src="{{ url('storage/' . $blog->image) }}" alt=""
                                                         height="100" width="150">
                                                 </td>
                                             </tr>
@@ -76,7 +76,8 @@
                                                     {{ trans('main_translation.BlogDescription') }}
                                                 </td>
                                                 <td>
-                                                    <div class="form-control m-1" style="background-color: #F5F5F1">
+                                                    <div class="form-control m-1"
+                                                        style="background-color: #F5F5F1; height:auto">
                                                         {!! $blog->description !!}
                                                     </div>
                                                 </td>

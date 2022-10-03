@@ -50,7 +50,7 @@
                         </p>
                     @enderror
                 </div>
-                <img id="show_cover_image" src="{{ asset('storage/' . $blog->cover_image) }}"
+                <img id="show_cover_image" src="{{ url('storage/' . $blog->cover_image) }}"
                     style="height: 80px; width: 100px;" alt="{{ trans('main_translation.NoCoverImage') }}">
             </fieldset>
         </div>
@@ -69,7 +69,7 @@
                         </p>
                     @enderror
                 </div>
-                <img id="image" src="{{ asset('storage/' . $blog->image) }}" style="height: 80px; width: 100px;"
+                <img id="image" src="{{ url('storage/' . $blog->image) }}" style="height: 80px; width: 100px;"
                     alt="{{ trans('main_translation.NoImage') }}">
             </fieldset>
         </div>

@@ -51,7 +51,7 @@
                         </p>
                     @enderror
                 </div>
-                <img id="image" src="{{ asset('storage/' . $partner->partner_image) }}"
+                <img id="image" src="{{ url('storage/' . $partner->partner_image) }}"
                     style="height: 80px; width: 100px;" alt="no partner image uploaded">
             </fieldset>
         </div>

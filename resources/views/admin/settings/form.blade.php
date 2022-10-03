@@ -105,7 +105,7 @@
                                 </p>
                             @enderror
                         </div>
-                        <img id="logo" src="{{ asset('storage/' . $setting->website_logo) }}"
+                        <img id="logo" src="{{ url('storage/' . $setting->website_logo) }}"
                             style="height: 80px; width: 100px;" alt="no website logo uploaded">
                     </fieldset>
                 </div>
@@ -382,7 +382,7 @@
                                 </p>
                             @enderror
                         </div>
-                        <img id="image" src="{{ asset('storage/' . $setting->about_us_image) }}"
+                        <img id="image" src="{{ url('storage/' . $setting->about_us_image) }}"
                             style="height: 80px; width: 100px;" alt="no about us image uploaded">
                     </fieldset>
                 </div>

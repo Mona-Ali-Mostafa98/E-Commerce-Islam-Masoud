@@ -70,7 +70,7 @@
                                                                 @foreach ($sliders as $slider)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
-                                                                        <td><img src="{{ asset('storage/' . $slider->image) }}"
+                                                                        <td><img src="{{ url('storage/' . $slider->image) }}"
                                                                                 alt="" height="60"
                                                                                 width="60"></td>
                                                                         <td class="text-success fw-bold">

@@ -61,6 +61,11 @@ class User extends Authenticatable
     }
 
 
+        public function favorite_products()
+    {
+        return $this->belongsToMany(Product::class, 'wishlists')->withTimestamps();
+    }
+
     // Accessors
     // $product->image_url
     public function getImageUrlAttribute()
@@ -71,7 +76,7 @@ class User extends Authenticatable
         if (Str::startsWith($this->profile_image, ['http://', 'https://'])) {
             return $this->profile_image;
         }
-        return asset('storage/' . $this->profile_image);
+        return url('storage/' . $this->profile_image);
     }
 
 

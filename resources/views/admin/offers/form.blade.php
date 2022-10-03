@@ -31,7 +31,7 @@
                         </p>
                     @enderror
                 </div>
-                <img id="image" src="{{ asset('storage/' . $offer->image) }}" style="height: 80px; width: 100px;"
+                <img id="image" src="{{ url('storage/' . $offer->image) }}" style="height: 80px; width: 100px;"
                     alt="no image uploaded">
             </fieldset>
         </div>

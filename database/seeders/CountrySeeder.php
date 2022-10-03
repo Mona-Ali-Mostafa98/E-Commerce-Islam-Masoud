@@ -21,7 +21,7 @@ class CountrySeeder extends Seeder
                 'country_name' => 'Egypt',
                 'country_code' => '+20',
                 'calling_code' => 'EG',
-                'country_flag' => asset('admin/Flag_of_Egypt.svg.webp') ,
+                'country_flag' => url('admin/Flag_of_Egypt.svg.webp') ,
                 'maximum_mobile_number' => '12',
             ],
         ];

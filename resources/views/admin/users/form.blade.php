@@ -112,7 +112,7 @@
                         </p>
                     @enderror
                 </div>
-                <img id="image" src="{{ asset('storage/' . $user->profile_image) }}"
+                <img id="image" src="{{ url('storage/' . $user->profile_image) }}"
                     style="height: 80px; width: 100px;" alt="no user image uploaded">
             </fieldset>
         </div>
