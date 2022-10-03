@@ -442,28 +442,6 @@ $(window).on("load", function () {
 
   // Sales Chart ends //
 
-  /***** TOUR ******/
-  var tour = new Shepherd.Tour({
-    classes: 'shadow-md bg-purple-dark',
-    scrollTo: true
-  })
-
-  // tour steps
-  tour.addStep('step-1', {
-    text: 'Toggle Collapse Sidebar.',
-    attachTo: '.modern-nav-toggle .collapse-toggle-icon bottom',
-    buttons: [
-
-      {
-        text: "Skip",
-        action: tour.complete
-      },
-      {
-        text: 'Next',
-        action: tour.next
-      },
-    ]
-  });
 
   tour.addStep('step-2', {
     text: 'Create your own bookmarks. You can also re-arrange them using drag & drop.',
