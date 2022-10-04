@@ -69,7 +69,7 @@
                                                             </thead>
 
                                                             <tbody>
-                                                                @foreach ($services as $service)
+                                                                @forelse($website_services as $service)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
                                                                         <td><img src="{{ url('storage/' . $service->image) }}"
@@ -109,12 +109,16 @@
                                                                             </div>
                                                                         </td>
                                                                     </tr>
-                                                                @endforeach
+                                                                @empty
+                                                                    <td class="text-center text-muted"
+                                                                        style="font-size: 25px" colspan="6">
+                                                                        {{ trans('main_translation.NoServices') }}
+                                                                    </td>
+                                                                @endforelse
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>

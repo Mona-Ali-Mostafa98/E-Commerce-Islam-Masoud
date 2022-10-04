@@ -49,42 +49,54 @@
                                                 <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.Image') }} : </td>
                                                 <td>
-                                                    <img id="image" src="{{ url('storage/' . $service->image) }}"
-                                                        alt="" height="100" width="150">
+                                                    <img class="m-1" id="image"
+                                                        src="{{ url('storage/' . $service->image) }}" alt=""
+                                                        height="100" width="150">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.ServiceTitle') }}
                                                 </td>
-                                                <td>{{ $service->title }}</td>
+                                                <td>
+                                                    <input class="form-control m-1" value="{{ $service->title }}" readonly>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-primary">
-                                                    {{ trans('main_translation.ServiceTitle') }}
+                                                    {{ trans('main_translation.ServiceSupTitle') }}
                                                 </td>
-                                                <td>{{ $service->title }}</td>
+                                                <td>
+                                                    <input class="form-control m-1" value="{{ $service->sup_title }}"
+                                                        readonly>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.ServiceDescription') }}
                                                 </td>
                                                 <td>
-                                                    {{ $service->description }}
+                                                    <textarea class="form-control m-1" cols="90" rows="3" readonly>{{ $service->description }}</textarea>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.Status') }} </td>
+
                                                 <td>
-                                                    {{ $service->status }}
+                                                    <input class="form-control m-1" value="{{ $service->status }}"
+                                                        readonly>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.CreatedAt') }}
                                                 </td>
-                                                <td>{{ $service->created_at?->translatedFormat('l , j F Y , H:i:s') ?? 'N/A' }}
+                                                <td>
+                                                    <input class="form-control m-1"
+                                                        value="{{ $service->created_at?->translatedFormat('l , j F Y , H:i:s') ?? 'N/A' }}"
+                                                        readonly>
+
                                                 </td>
                                             </tr>
                                             <tr>
@@ -92,7 +104,10 @@
                                                     {{ trans('main_translation.UpdatedAt') }}
                                                 </td>
                                                 <td>
-                                                    {{ $service->updated_at?->translatedFormat('l , j F Y , H:i:s') ?? 'N/A' }}
+                                                    <input class="form-control m-1"
+                                                        value="{{ $service->updated_at?->translatedFormat('l , j F Y , H:i:s') ?? 'N/A' }}"
+                                                        readonly>
+
                                                 </td>
                                             </tr>
                                         </tbody>
