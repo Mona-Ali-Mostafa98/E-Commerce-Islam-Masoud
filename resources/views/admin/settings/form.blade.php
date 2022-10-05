@@ -214,25 +214,24 @@
 
     {{-- Start of tab of Services --}}
     <div class="tab-pane" id="services" role="tabpanel" aria-labelledby="services-tab-justified">
-        <fieldset>
-            <div class="row">
-                @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label
-                                for="about_services">{{ trans('main_translation.AboutServices_' . $language) }}</label>
-                            <textarea name="about_services[{{ $language }}]" id="about_services" class="summernote form-control">
-                                {{ old("about_services.$language", $about_services[$language] ?? '') }}
-                            </textarea>
-                        </div>
+        <div class="row">
+            @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="about_services">{{ trans('main_translation.AboutServices_' . $language) }}</label>
+                        <fieldset class="form-group">
+                            <textarea name="about_services[{{ $language }}]" id="about_services"
+                                class="form-control @error("about_services.$language") is-invalid @enderror" rows="3"
+                                placeholder="{{ trans('main_translation.EnterAboutServices_' . $language) }}">{{ old("about_services.$language", $about_services[$language] ?? '') }}</textarea>
+                        </fieldset>
                         @error("about_services.$language")
-                            <p class="danger mt-1">{{ $message }}
-                            </p>
+                            <p class="danger mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-                @endforeach
-            </div>
-        </fieldset>
+                </div>
+            @endforeach
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <button type="submit"
@@ -305,67 +304,76 @@
     <div class="tab-pane" id="about-us" role="tabpanel" aria-labelledby="about-us-tab-justified">
         <fieldset>
             <div class="row">
+
+
                 @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label
                                 for="about_us_description">{{ trans('main_translation.AboutUsDescription_' . $language) }}</label>
-                            <textarea name="about_us_description[{{ $language }}]" id="about_us_description"
-                                class="summernote form-control">
-                                {{ old("about_us_description.$language", $about_us_description[$language] ?? '') }}
-                            </textarea>
+                            <fieldset class="form-group">
+                                <textarea name="about_us_description[{{ $language }}]" id="about_us_description"
+                                    class="form-control @error("about_us_description.$language") is-invalid @enderror" rows="5"
+                                    placeholder="{{ trans('main_translation.EnterAboutUsDescription_' . $language) }}">{{ old("about_us_description.$language", $about_us_description[$language] ?? '') }}</textarea>
+                            </fieldset>
                             @error("about_us_description.$language")
-                                <p class="danger mt-1">{{ $message }}
-                                </p>
+                                <p class="danger mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                 @endforeach
+
 
                 @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="our_vision">{{ trans('main_translation.OurVision_' . $language) }}</label>
-                            <textarea name="our_vision[{{ $language }}]" id="our_vision" class="summernote form-control ">
-                                {{ old("our_vision.$language", $our_vision[$language] ?? '') }}
-                            </textarea>
+                            <fieldset class="form-group">
+                                <textarea name="our_vision[{{ $language }}]" id="our_vision"
+                                    class="form-control @error("our_vision.$language") is-invalid @enderror" rows="3"
+                                    placeholder="{{ trans('main_translation.EnterOurVision_' . $language) }}">{{ old("our_vision.$language", $our_vision[$language] ?? '') }}</textarea>
+                            </fieldset>
                             @error("our_vision.$language")
-                                <p class="danger mt-1">{{ $message }}
-                                </p>
+                                <p class="danger mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                 @endforeach
+
 
                 @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="our_message">{{ trans('main_translation.OurMessage_' . $language) }}</label>
-                            <textarea name="our_message[{{ $language }}]" id="our_message" class="summernote form-control ">
-                                {{ old("our_message.$language", $our_message[$language] ?? '') }}
-                            </textarea>
+                            <fieldset class="form-group">
+                                <textarea name="our_message[{{ $language }}]" id="our_message"
+                                    class="form-control @error("our_message.$language") is-invalid @enderror" rows="3"
+                                    placeholder="{{ trans('main_translation.EnterOurMessage_' . $language) }}">{{ old("our_message.$language", $our_message[$language] ?? '') }}</textarea>
+                            </fieldset>
                             @error("our_message.$language")
-                                <p class="danger mt-1">{{ $message }}
-                                </p>
+                                <p class="danger mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                 @endforeach
 
+
                 @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="our_goals">{{ trans('main_translation.OurGoals_' . $language) }}</label>
-                            <textarea name="our_goals[{{ $language }}]" id="our_goals" class="summernote form-control ">
-                                {{ old("our_goals.$language", $our_goals[$language] ?? '') }}
-                            </textarea>
+                            <fieldset class="form-group">
+                                <textarea name="our_goals[{{ $language }}]" id="our_goals"
+                                    class="form-control @error("our_goals.$language") is-invalid @enderror" rows="3"
+                                    placeholder="{{ trans('main_translation.EnterOurGoals_' . $language) }}">{{ old("our_goals.$language", $our_goals[$language] ?? '') }}</textarea>
+                            </fieldset>
                             @error("our_goals.$language")
-                                <p class="danger mt-1">{{ $message }}
-                                </p>
+                                <p class="danger mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                 @endforeach
+
 
                 <div class="col-sm-6">
                     <fieldset class="form-group">

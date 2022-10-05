@@ -64,24 +64,6 @@
                 </li>
 
 
-                <li
-                    class="{{ Request::is('*admin/offers*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
-                    <a href="#"><i class="fa fa-gift"></i><span
-                            class="menu-title">{{ trans('main_translation.Offers') }}</span></a>
-                    <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/offers') ? 'active' : '' }}">
-                            <a href="{{ route('admin.offers.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.OffersList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/offers/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.offers.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddOffer') }}</span></a>
-                        </li>
-                    </ul>
-                </li>
-
 
                 <li
                     class="{{ Request::is('*admin/partners*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
