@@ -67,8 +67,9 @@ class BlogController extends Controller
     {
         $title = $blog->getTranslations('title');
         $description = $blog->getTranslations('description');
+        $brief_about_blog = $blog->getTranslations('brief_about_blog');
 
-        return view('admin.blogs.edit' , compact('blog' , 'title' , 'description'));
+        return view('admin.blogs.edit' , compact('blog' , 'title' , 'description' , 'brief_about_blog'));
 
     }
 

@@ -27,8 +27,11 @@ class UpdateBlogRequest extends FormRequest
             'cover_image' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
-            'title.ar' => 'sometimes|required|string',
-            'title.en' => 'sometimes|required|string',
+            'title.ar' => 'sometimes|required|string|max:255',
+            'title.en' => 'sometimes|required|string|max:255',
+
+            'brief_about_blog.ar' => 'sometimes|required|string|max:255',
+            'brief_about_blog.en' => 'sometimes|required|string|max:255',
 
             'description.ar' => 'sometimes|required|string',
             'description.en' => 'sometimes|required|string',

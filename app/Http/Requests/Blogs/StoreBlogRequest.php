@@ -28,8 +28,11 @@ class StoreBlogRequest extends FormRequest
             'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
-            'title.ar' => 'required|string',
-            'title.en' => 'required|string',
+            'title.ar' => 'required|string|max:255',
+            'title.en' => 'required|string|max:255',
+
+            'brief_about_blog.ar' => 'required|string|max:255',
+            'brief_about_blog.en' => 'required|string|max:255',
 
             'description.ar' => 'required|string',
             'description.en' => 'required|string',

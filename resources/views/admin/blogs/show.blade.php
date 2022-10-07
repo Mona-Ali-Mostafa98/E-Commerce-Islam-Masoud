@@ -73,6 +73,14 @@
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold text-primary">
+                                                    {{ trans('main_translation.BriefAboutBlog') }}
+                                                </td>
+                                                <td>
+                                                    <textarea class="form-control m-1" cols="90" rows="3" readonly>{{ $blog->brief_about_blog }}</textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.BlogDescription') }}
                                                 </td>
                                                 <td>

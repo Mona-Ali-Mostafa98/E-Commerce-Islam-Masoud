@@ -11,13 +11,13 @@ class Blog extends Model
     use HasFactory , HasTranslations;
 
     protected $fillable = [
-        'cover_image', 'image', 'title',
+        'cover_image', 'image', 'title', 'brief_about_blog',
         'description', 'views_number', 'admin_id',
 
     ];
 
     public $translatable = [
-        'title' , 'description'
+        'title' , 'description' , 'brief_about_blog'
     ];
 
     public function admin()

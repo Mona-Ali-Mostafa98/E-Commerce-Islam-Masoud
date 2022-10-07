@@ -21,9 +21,25 @@
 
 
         @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
+            <div class="col-md-6 col-12">
+                <div class="form-group">
+                    <label for="brief_about_blog">{{ trans('main_translation.BriefAboutBlog_' . $language) }}</label>
+                    <fieldset class="form-group">
+                        <textarea name="brief_about_blog[{{ $language }}]" id="brief_about_blog"
+                            class="form-control @error("brief_about_blog.$language") is-invalid @enderror" rows="3"
+                            placeholder="{{ trans('main_translation.EnterBriefAboutBlog_' . $language) }}">{{ old("brief_about_blog.$language", $brief_about_blog[$language] ?? '') }}</textarea>
+                    </fieldset>
+                    @error("brief_about_blog.$language")
+                        <p class="danger">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+        @endforeach
+
+        @foreach (LaravelLocalization::getSupportedLocales() as $language => $value)
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="description">{{ trans('main_translation.AboutOffers_' . $language) }}</label>
+                    <label for="description">{{ trans('main_translation.BlogDescription_' . $language) }}</label>
                     <textarea name="description[{{ $language }}]" id="description"
                         class="summernote form-control @error("description.$language") is-invalid @enderror">
                         {{ old("description.$language", $description[$language] ?? '') }}
