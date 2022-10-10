@@ -386,27 +386,30 @@
                     <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="{{ route('website.change_password') }}" method="POST">
+                        @csrf
                         <div class="profile row align-items-end gy-3">
                             <!-- الرقم السري -->
                             <div class="col-12">
                                 <label>{{ trans('main_translation.CurrentPassword') }}</label>
                                 <div class="position-relative">
-                                    <input class="form-control" type="password" placeholder="********">
+                                    <input name="current_password" class="form-control" type="password"
+                                        placeholder="********">
                                 </div>
                             </div>
                             <!-- الرقم السري الجديد -->
                             <div class="col-12">
                                 <label>{{ trans('main_translation.NewPassword') }}</label>
                                 <div class="position-relative">
-                                    <input class="form-control" type="password" placeholder="********">
+                                    <input name="password" class="form-control" type="password" placeholder="********">
                                 </div>
                             </div>
                             <!-- تاكيد الرقم السري -->
                             <div class="col-12">
                                 <label>{{ trans('main_translation.NewPasswordConfirmation') }}</label>
                                 <div class="position-relative">
-                                    <input class="form-control" type="password" placeholder="********">
+                                    <input name="password_confirmation" class="form-control" type="password"
+                                        placeholder="********">
                                 </div>
                             </div>
                             <div class="col-12">

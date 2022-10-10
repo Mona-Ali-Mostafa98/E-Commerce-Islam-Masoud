@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\User;
+use App\Models\UserAddress;
 use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
@@ -132,5 +134,30 @@ class AuthController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function add_address_for_user(Request $request)
+    {
+        $data = $request->validate([
+            'user_id' => ['required', 'exists:users,id'],
+            'city' => ['required','string'],
+            'state' => ['required','string'],
+            'full_address' => ['required' , 'string' ],
+        ]);
+
+        $user_id = Auth::guard('web')->user()->id ;
+
+        UserAddress::where('user_id', $user_id)->create([
+                    'city' => $data['city'],
+                    'state' => $data['state'],
+                    'full_address' => $data['full_address'],
+                    'user_id' =>  $user_id ,
+                ]);
+
+        toastr()->success(trans('messages.AddAddressSuccessfully'));
+
+        return redirect()->route('website.profile');
+    }
+
 
 }
