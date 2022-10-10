@@ -37,9 +37,9 @@ class StoreUserRequest extends FormRequest
 
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
-            'receive_notifications' =>'nullable',
+            'receive_notifications' =>'nullable|boolean',
 
-            'status' => ['required', Rule::in(['active', 'inactive'])] ,
+            'status' => ['nullable', Rule::in(['active', 'inactive'])] ,
 
             'mobile_verified' =>'nullable',
 

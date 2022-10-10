@@ -35,11 +35,11 @@ class UpdateUserRequest extends FormRequest
             'password' => ['sometimes' , 'nullable', Password::min(8) ,'max:20', 'confirmed'],
             'password_confirmation' => ['sometimes' ,  'nullable','same:password'],
 
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'profile_image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
-            'receive_notifications' =>'nullable',
+            'receive_notifications' =>'nullable|boolean',
 
-            'status' => ['sometimes' , 'required', Rule::in(['active', 'inactive'])] ,
+            'status' => ['sometimes' , 'nullable', Rule::in(['active', 'inactive'])] ,
 
             'mobile_verified' =>'nullable',
         ];
