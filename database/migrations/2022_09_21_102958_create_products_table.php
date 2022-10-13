@@ -32,7 +32,7 @@ return new class extends Migration
 
             // new
             $table->string('slug')->unique();
-            $table->float('rating')->default(0);
+            $table->enum('rating' , [1,2,3,4,5])->nullable();
             $table->softDeletes();
             $table->json('options')->nullable();
 

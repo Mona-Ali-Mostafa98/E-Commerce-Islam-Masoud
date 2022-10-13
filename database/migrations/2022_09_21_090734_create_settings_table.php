@@ -25,6 +25,8 @@ return new class extends Migration
             $table->text('currency_code')->default('SAR');
             $table->integer('tax')->nullable();
 
+            $table->integer('shipping_price')->nullable();
+
             $table->longText('about_services');
 
             $table->longText('about_offers');
