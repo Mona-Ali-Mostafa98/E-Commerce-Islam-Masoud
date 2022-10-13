@@ -61,3 +61,4 @@
     <!-- END: Content-->
 
 @endsection
+@include('admin..products.script_to_show_multi_image_uploded')

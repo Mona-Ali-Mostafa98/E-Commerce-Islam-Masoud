@@ -94,19 +94,45 @@
 
         <div class="col-lg-6 col-md-12">
             <fieldset class="form-group">
-                <label for="fileupload">{{ trans('main_translation.ProductImage') }}</label>
+                <label for="fileupload">{{ trans('main_translation.ProductImage') }}
+                    ({{ trans('main_translation.CanAttachMoreThanImage') }})</label>
                 <div class="custom-file mb-1">
                     <input type="file" name="product_image[]" id="fileupload" accept="image/*"
-                        class="custom-file-input @error('product_image.*') is-invalid @enderror" multiple>
+                        class="custom-file-input @error('product_image') is-invalid @enderror" multiple required>
                     <label class="custom-file-label"
                         for="inputGroupFile01">{{ trans('main_translation.ProductImage') }}</label>
-                    @error('product_image.*')
+                    @error('product_image')
                         <p class="danger">{{ $message }}
                         </p>
                     @enderror
                 </div>
                 @foreach ($product->images as $value)
-                    <img src="{{ $value->product_image_url }}" style="height: 80px; width: 100px;">
+                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter{{ $value->id }}">
+                        <img src="{{ $value->product_image_url }}" style="height: 80px; width: 100px;"></a>
+
+                    <!-- Modal -->
+                    <div class="modal fade text-center" id="exampleModalCenter{{ $value->id }}" tabindex="-1"
+                        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">
+                                        {{ trans('main_translation.ProductImage') }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ $value->product_image_url }}"
+                                        style="max-width: 450px ; max-height:350px">
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ route('admin.delete_product_image', $value->id) }}"
+                                        class="btn btn-danger ">{{ trans('main_translation.Delete') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
                 {{-- this div for show image uploaded --}}
                 <div id="product_images">

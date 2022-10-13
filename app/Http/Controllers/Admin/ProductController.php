@@ -71,6 +71,7 @@ class ProductController extends Controller
 
             // upload multiple image to product using upload image trait
             if ($images = $request->file('product_image')) {
+                $allowed_extension=['jpeg','png','jpg','gif' , 'svg'];
                 foreach($images as $image){
                     $imageName = time().rand(0,999). "." . $image->getClientOriginalExtension();
                     $image->storeAs('product_images', $imageName ,'public');
@@ -147,22 +148,42 @@ class ProductController extends Controller
         }
         catch (Throwable $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', $e->getMessage());
+            toastr()->error($e->getMessage());
+
+            return redirect()->back();
         }
 
     }
 
     public function destroy(Product $product)
     {
-        $product -> delete();
-
-        if ($product->product_image) {
-            Storage::disk('public')->delete($product->product_image);
+        if ($product->images ) {
+            foreach ($product->images as $image) {
+                $image->delete();
+                Storage::disk('public')->delete('product_images/'. $image->product_image);
+            }
         }
+
+        $product -> delete();
 
         toastr()->success(trans('messages.DeleteSuccessfully'));
 
         return redirect()->route('admin.products.index');
+    }
+
+
+    // Delete one image of product
+    public function delete_product_image ($image_id)
+    {
+        $old_image = ProductImage::findOrFail($image_id);
+
+        $old_image->delete();
+
+        Storage::disk('public')->delete('product_images/'. $old_image->product_image);
+
+        toastr()->success(trans('messages.ImageDeletedSuccessfully'));
+
+        return redirect()->back();
     }
 
 }
