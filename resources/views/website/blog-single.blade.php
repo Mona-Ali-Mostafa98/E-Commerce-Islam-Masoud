@@ -27,7 +27,8 @@
                                 class="bi bi-calendar-date-fill"></i>{{ $blog->created_at?->translatedFormat('j F Y ') ?? 'N/A' }}
                         </li>
                         <li><i class="bi bi-pencil-square"></i> {{ $blog->admin->name }}</li>
-                        <li><i class="bi bi-eye-fill"></i> 5 مرات المشاهدة</li>
+                        <li><i class="bi bi-eye-fill"></i> {{ $blog->views_number }}
+                            {{ trans('main_translation.ViewsNumber') }}</li>
                     </ul>
                     <img src="{{ url('storage/' . $blog->image) }}" alt="">
                     {!! $blog->description !!}

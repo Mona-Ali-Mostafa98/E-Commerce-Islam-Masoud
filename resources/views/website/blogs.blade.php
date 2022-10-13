@@ -23,16 +23,19 @@
                             <div class="card">
                                 <img src="{{ url('storage/' . $blog->cover_image) }}" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <ul>
-                                        <li><i class="bi bi-calendar-date-fill"></i>
-                                            {{ $blog->created_at?->translatedFormat('j F Y ') ?? 'N/A' }}</li>
-                                        <li><i class="bi bi-pencil-square"></i> {{ $blog->admin->name }}</li>
-                                        <li><i class="bi bi-eye-fill"></i> {{ $blog->views_number }} مرات المشاهدة</li>
-                                    </ul>
-                                    <h5 class="card-title">{{ $blog->title }}</h5>
-                                    <p class="card-text">
-                                        {!! $blog->description !!}
-                                    </p>
+                                    <div>
+                                        <ul>
+                                            <li><i class="bi bi-calendar-date-fill"></i>
+                                                {{ $blog->created_at?->translatedFormat('j F Y ') ?? 'N/A' }}</li>
+                                            <li><i class="bi bi-pencil-square"></i> {{ $blog->admin->name }}</li>
+                                            <li><i class="bi bi-eye-fill"></i> {{ $blog->views_number }}
+                                                {{ trans('main_translation.ViewsNumber') }}</li>
+                                        </ul>
+                                        <h5 class="card-title">{{ $blog->title }}</h5>
+                                        <p class="card-text">
+                                            {{ Illuminate\Support\Str::of($blog->brief_about_blog)->limit(160) }}
+                                        </p>
+                                    </div>
                                     <a href="{{ route('website.blogs.show', $blog->id) }}">{{ trans('main_translation.More') }}
                                         <i class="bi bi-chevron-left"></i></a>
                                 </div>

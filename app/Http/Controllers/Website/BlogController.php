@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -18,7 +21,7 @@ class BlogController extends Controller
 
 
 
-    public function show(Blog $blog)
+    public function show(Blog $blog, Request $request )
     {
         $request = request();
 
@@ -28,10 +31,23 @@ class BlogController extends Controller
         ->orderBy('id' , 'DESC')
         ->get();
 
-        // $another_blogs = Blog::where('id', '!=', $blog->id)->latest()->take(10)->get();
+        if(! Auth::guard('web')->check()) {                                           //guest user identified by ip
+            $cookie_name = (Str::replace('.','',($request->ip())).'-'. $blog->id);
+        }
+        else {
+            $cookie_name = (Auth::guard('web')->user()?->id.'-'. $blog->id);         //logged in user
+        }
 
-        return view('website.blog-single', compact('blog','another_blogs') );
-
+        if(Cookie::get($cookie_name) == '') {                         //check if cookie is set
+            $cookie = cookie($cookie_name, '1', 60);                 //set the cookie
+            $blog->incrementViewsNumber();                           //count the view
+            return response()
+            ->view('website.blog-single',compact('blog' , 'another_blogs'))
+            ->withCookie($cookie);                                  //store the cookie
+        }
+        else {
+            return  view('website.blog-single', compact('blog','another_blogs') );                                  //this view is not counted
+        }
     }
 
 }

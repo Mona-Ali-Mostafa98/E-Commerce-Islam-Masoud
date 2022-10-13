@@ -27,4 +27,10 @@ class Blog extends Model
         ]);
     }
 
+
+    public function incrementViewsNumber() {
+        $this->views_number++;
+        return $this->save();
+    }
+
 }
