@@ -29,7 +29,9 @@ class ProductController extends Controller
     public function store_comment(Request $request)
     {
         $data = $request->validate([
+            'product_id' => ['required' , 'exists:products,id'],
             'user_id' => ['required' , 'exists:users,id'],
+            'rate' => ['required' , 'in:1,2,3,4,5'],
             'comment' => ['required' , 'string' , 'min:10'],
         ]);
 
