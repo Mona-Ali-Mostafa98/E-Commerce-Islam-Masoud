@@ -26,20 +26,20 @@ class AuthController extends Controller
         if($admin->status == "active"){
             if(!auth()->guard('admin')-> attempt(['email'=> $data['email'],'password'=> $data['password']]))
             {
-                toastr()->error(trans('messages.LoginFailed'));
+                toastr()->error(trans('messages.LoginFailed') , ' ');
 
                 return back();
             }
             else
             {
-                toastr()->success(trans('messages.LoginSuccessfully'));
+                toastr()->success(trans('messages.LoginSuccessfully') , ' ');
 
                 return redirect()->route('admin.dashboard');
 
             }
         }else
         {
-            toastr()->error(trans('messages.AccountNotActivate'));
+            toastr()->error(trans('messages.AccountNotActivate') , ' ');
 
             return back();
 
@@ -52,6 +52,9 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->guard('admin')-> logout() ;
+
+        toastr()->error(trans('messages.LogoutSuccessfully') , ' ');
+
         return redirect(route('admin.login'));
 
     }
