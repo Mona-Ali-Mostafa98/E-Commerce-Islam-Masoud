@@ -15,54 +15,62 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="{{ Request::is('*admin/dashboard*') ? 'nav-item active' : 'nav-item' }}">
-                    <a href="{{ route('admin.dashboard') }}">
-                        <i class="feather icon-home"></i>
-                        <span class="menu-title" data-i18n="Dashboard">{{ trans('main_translation.Dashboard') }}</span>
-                        {{-- <span class="badge badge badge-warning badge-pill float-right mr-2">2</span> --}}
-                    </a>
-                </li>
-
-                <li class="{{ Request::is('*admin/settings*') ? 'nav-item active' : 'nav-item' }}">
-                    <a href="{{ route('admin.settings.edit') }}">
-                        <i class="feather icon-settings"></i>
-                        <span class="menu-title" data-i18n="Dashboard">{{ trans('main_translation.Settings') }}</span>
-                    </a>
-                </li>
+                @can('Dashboard')
+                    <li class="{{ Request::is('*admin/dashboard*') ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{ route('admin.dashboard') }}">
+                            <i class="feather icon-home"></i>
+                            <span class="menu-title" data-i18n="Dashboard">{{ trans('main_translation.Dashboard') }}</span>
+                            {{-- <span class="badge badge badge-warning badge-pill float-right mr-2">2</span> --}}
+                        </a>
+                    </li>
+                @endcan
 
 
-                <li
-                    class="{{ Request::is('*admin/orders*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
-                    <a href="#"><i class="feather icon-shopping-cart"></i><span
-                            class="menu-title">{{ trans('main_translation.Orders') }}</span></a>
-                    <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/orders') ? 'active' : '' }}">
-                            <a href="{{ route('admin.orders.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.OrdersList') }}</span></a>
-                        </li>
-                    </ul>
-                </li>
+                @can('Settings')
+                    <li class="{{ Request::is('*admin/settings*') ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{ route('admin.settings.edit') }}">
+                            <i class="feather icon-settings"></i>
+                            <span class="menu-title" data-i18n="Dashboard">{{ trans('main_translation.Settings') }}</span>
+                        </a>
+                    </li>
+                @endcan
 
 
-                <li
-                    class="{{ Request::is('*admin/sliders*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
-                    <a href="#"><i class="fa fa-picture-o"></i><span
-                            class="menu-title">{{ trans('main_translation.Sliders') }}</span></a>
-                    <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/sliders') ? 'active' : '' }}">
-                            <a href="{{ route('admin.sliders.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.SlidersList') }}</span></a>
-                        </li>
-                        {{-- <li class="{{ Request::is('*admin/sliders/create') ? 'active' : '' }}">
+                @can('List Orders')
+                    <li
+                        class="{{ Request::is('*admin/orders*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
+                        <a href="#"><i class="feather icon-shopping-cart"></i><span
+                                class="menu-title">{{ trans('main_translation.Orders') }}</span></a>
+                        <ul class="menu-content" style="">
+                            <li class="{{ Request::is('*admin/orders') ? 'active' : '' }}">
+                                <a href="{{ route('admin.orders.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.OrdersList') }}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+
+
+                @can('List Sliders')
+                    <li
+                        class="{{ Request::is('*admin/sliders*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
+                        <a href="#"><i class="fa fa-picture-o"></i><span
+                                class="menu-title">{{ trans('main_translation.Sliders') }}</span></a>
+                        <ul class="menu-content" style="">
+                            <li class="{{ Request::is('*admin/sliders') ? 'active' : '' }}">
+                                <a href="{{ route('admin.sliders.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.SlidersList') }}</span></a>
+                            </li>
+                            {{-- <li class="{{ Request::is('*admin/sliders/create') ? 'active' : '' }}">
                             <a href="{{ route('admin.sliders.create') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item"
                                     data-i18n="Edit">{{ trans('main_translation.AddSlider') }}</span></a>
                         </li> --}}
-                    </ul>
-                </li>
-
+                        </ul>
+                    </li>
+                @endcan
 
 
                 <li
@@ -70,16 +78,21 @@
                     <a href="#"><i class="feather icon-users"></i><span
                             class="menu-title">{{ trans('main_translation.Partners') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/partners') ? 'active' : '' }}">
-                            <a href="{{ route('admin.partners.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.PartnersList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/partners/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.partners.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddPartner') }}</span></a>
-                        </li>
+                        @can('List Partners')
+                            <li class="{{ Request::is('*admin/partners') ? 'active' : '' }}">
+                                <a href="{{ route('admin.partners.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.PartnersList') }}</span></a>
+                            </li>
+                        @endcan
+
+                        @can('Add Partner')
+                            <li class="{{ Request::is('*admin/partners/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.partners.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddPartner') }}</span></a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
@@ -89,16 +102,20 @@
                     <a href="#"><i class="feather icon-list"></i><span
                             class="menu-title">{{ trans('main_translation.Services') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/services') ? 'active' : '' }}">
-                            <a href="{{ route('admin.services.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.ServicesList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/services/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.services.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddService') }}</span></a>
-                        </li>
+                        @can('Services List')
+                            <li class="{{ Request::is('*admin/services') ? 'active' : '' }}">
+                                <a href="{{ route('admin.services.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.ServicesList') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('Add Service')
+                            <li class="{{ Request::is('*admin/services/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.services.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddService') }}</span></a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
@@ -108,16 +125,22 @@
                     <a href="#"><i class="feather icon-file-text"></i><span
                             class="menu-title">{{ trans('main_translation.Blogs') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/blogs') ? 'active' : '' }}">
-                            <a href="{{ route('admin.blogs.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.BlogsList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/blogs/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.blogs.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddBlog') }}</span></a>
-                        </li>
+                        @can('List Blogs')
+                            <li class="{{ Request::is('*admin/blogs') ? 'active' : '' }}">
+                                <a href="{{ route('admin.blogs.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.BlogsList') }}</span></a>
+                            </li>
+                        @endcan
+
+                        @can('Add Blog')
+                            <li class="{{ Request::is('*admin/blogs/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.blogs.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddBlog') }}</span></a>
+                            </li>
+                        @endcan
+
                     </ul>
                 </li>
 
@@ -127,16 +150,20 @@
                     <a href="#"><i class="feather icon-grid"></i><span
                             class="menu-title">{{ trans('main_translation.Products') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/products') ? 'active' : '' }}">
-                            <a href="{{ route('admin.products.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.ProductsList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/products/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.products.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddProduct') }}</span></a>
-                        </li>
+                        @can('List Products')
+                            <li class="{{ Request::is('*admin/products') ? 'active' : '' }}">
+                                <a href="{{ route('admin.products.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.ProductsList') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('Add Product')
+                            <li class="{{ Request::is('*admin/products/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.products.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddProduct') }}</span></a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
@@ -145,16 +172,20 @@
                     <a href="#"><i class="fa fa-users"></i><span
                             class="menu-title">{{ trans('main_translation.Users') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/users') ? 'active' : '' }}">
-                            <a href="{{ route('admin.users.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.UsersList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/users/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.users.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddUser') }}</span></a>
-                        </li>
+                        @can('List Users')
+                            <li class="{{ Request::is('*admin/users') ? 'active' : '' }}">
+                                <a href="{{ route('admin.users.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.UsersList') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('Add User')
+                            <li class="{{ Request::is('*admin/users/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.users.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddUser') }}</span></a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
@@ -164,16 +195,21 @@
                     <a href="#"><i class="feather icon-info"></i><span
                             class="menu-title">{{ trans('main_translation.Roles') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/roles') ? 'active' : '' }}">
-                            <a href="{{ route('admin.roles.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.RolesList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/roles/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.roles.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddRole') }}</span></a>
-                        </li>
+                        @can('List Roles')
+                            <li class="{{ Request::is('*admin/roles') ? 'active' : '' }}">
+                                <a href="{{ route('admin.roles.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.RolesList') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('Add Roles')
+                            <li class="{{ Request::is('*admin/roles/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.roles.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddRole') }}</span></a>
+                            </li>
+                        @endcan
+
                     </ul>
                 </li>
 
@@ -183,16 +219,20 @@
                     <a href="#"><i class="feather icon-user-check"></i><span
                             class="menu-title">{{ trans('main_translation.Admins') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/admins') ? 'active' : '' }}">
-                            <a href="{{ route('admin.admins.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.AdminsList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/admins/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.admins.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddAdmin') }}</span></a>
-                        </li>
+                        @can('List Admins')
+                            <li class="{{ Request::is('*admin/admins') ? 'active' : '' }}">
+                                <a href="{{ route('admin.admins.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.AdminsList') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('Add Admin')
+                            <li class="{{ Request::is('*admin/admins/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.admins.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddAdmin') }}</span></a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
@@ -202,46 +242,54 @@
                     <a href="#"><i class="fa fa-file-image-o"></i><span
                             class="menu-title">{{ trans('main_translation.Images') }}</span></a>
                     <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/galleries') ? 'active' : '' }}">
-                            <a href="{{ route('admin.galleries.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.ImagesList') }}</span></a>
-                        </li>
-                        <li class="{{ Request::is('*admin/galleries/create') ? 'active' : '' }}">
-                            <a href="{{ route('admin.galleries.create') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="Edit">{{ trans('main_translation.AddImage') }}</span></a>
-                        </li>
+                        @can('Galleries')
+                            <li class="{{ Request::is('*admin/galleries') ? 'active' : '' }}">
+                                <a href="{{ route('admin.galleries.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.ImagesList') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('Add Image')
+                            <li class="{{ Request::is('*admin/galleries/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.galleries.create') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="Edit">{{ trans('main_translation.AddImage') }}</span></a>
+                            </li>
+                        @endcan
+
                     </ul>
                 </li>
 
+                @can('List Subscribes')
+                    <li
+                        class="{{ Request::is('*admin/subscribes*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
+                        <a href="#"><i class="fa fa-envelope-o"></i><span
+                                class="menu-title">{{ trans('main_translation.Subscribes') }}</span></a>
+                        <ul class="menu-content" style="">
+                            <li class="{{ Request::is('*admin/subscribes') ? 'active' : '' }}">
+                                <a href="{{ route('admin.subscribes.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.SubscribesList') }}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
 
-                <li
-                    class="{{ Request::is('*admin/subscribes*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
-                    <a href="#"><i class="fa fa-envelope-o"></i><span
-                            class="menu-title">{{ trans('main_translation.Subscribes') }}</span></a>
-                    <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/subscribes') ? 'active' : '' }}">
-                            <a href="{{ route('admin.subscribes.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.SubscribesList') }}</span></a>
-                        </li>
-                    </ul>
-                </li>
+                @can('List Contact Us')
+                    <li
+                        class="{{ Request::is('*admin/contacts*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
+                        <a href="#"><i class="feather icon-message-square"></i><span
+                                class="menu-title">{{ trans('main_translation.ContactUs') }}</span></a>
+                        <ul class="menu-content" style="">
+                            <li class="{{ Request::is('*admin/contacts') ? 'active' : '' }}">
+                                <a href="{{ route('admin.contacts.index') }}"><i class="feather icon-circle"></i><span
+                                        class="menu-item"
+                                        data-i18n="List">{{ trans('main_translation.ContactUsList') }}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
 
-
-                <li
-                    class="{{ Request::is('*admin/contacts*') ? 'nav-item has-sub sidebar-group-active open' : 'nav-item has-sub' }}">
-                    <a href="#"><i class="feather icon-message-square"></i><span
-                            class="menu-title">{{ trans('main_translation.ContactUs') }}</span></a>
-                    <ul class="menu-content" style="">
-                        <li class="{{ Request::is('*admin/contacts') ? 'active' : '' }}">
-                            <a href="{{ route('admin.contacts.index') }}"><i class="feather icon-circle"></i><span
-                                    class="menu-item"
-                                    data-i18n="List">{{ trans('main_translation.ContactUsList') }}</span></a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>
