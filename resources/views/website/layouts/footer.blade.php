@@ -6,11 +6,18 @@
                 <h3>لـ أفضل العروض</h3>
                 <h3>تصل إلى 20% خصم</h3> --}}
                 {!! $settings->about_offers !!}
-                <div class="input-box">
-                    <i class="bi bi-envelope-paper-fill"></i>
-                    <input type="text" placeholder="{{ trans('main_translation.EnterEmail') }}">
-                    <button><i class="bi bi-send-fill"></i></button>
-                </div>
+                <form action="{{ route('website.store.subscribe') }}" method="POST">
+                    @csrf
+                    <div class="input-box">
+                        <i class="bi bi-envelope-paper-fill"></i>
+                        <input name="email" type="text" placeholder="{{ trans('main_translation.EnterEmail') }}">
+                        @error('email')
+                            <strong class="text-white">{{ $message }}</strong>
+                        @enderror
+                        <button type="submit"><i class="bi bi-send-fill"></i></button>
+                    </div>
+                </form>
+
             </div>
             <div class="col-12 col-md-6">
                 <div class="contact-us-cyrcle-img">
@@ -69,6 +76,38 @@
 
 @stack('scripts')
 
+<!-- Ajax an toastr script to show toastr using ajax-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.options.timeOut = 10000;
+                    toastr.info("{{ Session::get('message') }}");
+                    break;
+                case 'success':
+                    toastr.options.timeOut = 10000;
+                    toastr.warning("{{ Session::get('message') }}");
+                    break;
+                case 'error':
+                    toastr.options.timeOut = 10000;
+                    toastr.error("{{ Session::get('message') }}");
+                    break;
+            }
+        @endif
+    });
+</script>
+
+<!-- ajax-for-favorites script -- csrf-->
+<script src="{{ url('website/js/ajax-for-favorites.js') }}"></script>
+<script>
+    var _csrfToken = "{{ csrf_token() }}";
+</script>
 
 <!-- jQuery script -->
 <script src="{{ url('website/js/jquery-3.6.0.min.js') }}"></script>

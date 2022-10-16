@@ -33,6 +33,8 @@
     <!-- animate link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <!-- toastr link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     @if (App::getLocale() == 'en')
         <!-- custom css file link  -->
@@ -41,6 +43,8 @@
         <!-- custom css file link  -->
         <link rel="stylesheet" href="{{ url('website/css/style.css') }}" />
     @endif
+
+    @stack('styles')
 
 </head>
 
@@ -103,11 +107,14 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-10">
-                    <div class="search-box">
-                        <i class="bi bi-search"></i>
-                        <input type="search" placeholder="{{ trans('main_translation.SearchHere') }}">
-                        <button>{{ trans('main_translation.Search') }}</button>
-                    </div>
+                    <form action="{{ route('website.search') }}" method="GET">
+                        <div class="search-box">
+                            <i class="bi bi-search"></i>
+                            <input name="product_name" type="search"
+                                placeholder="{{ trans('main_translation.SearchHere') }}">
+                            <button>{{ trans('main_translation.Search') }}</button>
+                        </div>
+                    </form>
                 </div>
 
                 @include('website.partial._cart-notification')
@@ -140,8 +147,9 @@
                 </ul>
                 <ul class="auth">
                     <li>
-                        <a href="">
-                            <i class="bi bi-heart-fill"></i> {{ trans('main_translation.Favorites') }} (2)
+                        <a href="{{ route('website.wishlist') }}">
+                            <i class="bi bi-heart-fill"></i> {{ trans('main_translation.Favorites') }}
+                            ({{ $favorite_products }})
                         </a>
                     </li>
                     <li class="top-nav-user">
