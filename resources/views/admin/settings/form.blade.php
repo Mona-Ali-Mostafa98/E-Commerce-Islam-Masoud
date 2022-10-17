@@ -91,6 +91,36 @@
 
             <div class="row">
                 <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tax">{{ trans('main_translation.Tax') }}</label>
+                        <input name="tax" type="text" id="tax"
+                            placeholder="{{ trans('main_translation.EnterTax') }}"
+                            value="{{ old('tax', $setting->tax) }}"
+                            class="form-control @error('tax') is-invalid @enderror">
+                        @error('tax')
+                            <p class="danger mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="shipping_price">{{ trans('main_translation.ShippingPrice') }}</label>
+                        <input name="shipping_price" type="text" id="shipping_price"
+                            placeholder="{{ trans('main_translation.EnterShippingPrice') }}"
+                            value="{{ old('shipping_price', $setting->shipping_price) }}"
+                            class="form-control @error('shipping_price') is-invalid @enderror">
+                        @error('shipping_price')
+                            <p class="danger mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6">
                     <fieldset class="form-group">
                         <label for="website_logo">{{ trans('main_translation.WebsiteLogo') }}</label>
                         <div class="custom-file mb-1">
@@ -110,18 +140,6 @@
                     </fieldset>
                 </div>
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="tax">{{ trans('main_translation.Tax') }}</label>
-                        <input name="tax" type="text" id="tax"
-                            placeholder="{{ trans('main_translation.EnterTax') }}"
-                            value="{{ old('tax', $setting->tax) }}"
-                            class="form-control @error('tax') is-invalid @enderror">
-                        @error('tax')
-                            <p class="danger mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
             </div>
         </fieldset>
         <div class="row">

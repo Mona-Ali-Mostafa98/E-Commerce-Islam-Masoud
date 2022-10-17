@@ -21,18 +21,13 @@ return new class extends Migration
                     ->references('id')
                     ->cascadeOnDelete();
 
-            $table->string('first_name');
-            $table->string('last_name');
+            // $table->text('address')->nullable();
 
-            $table->string('city');
-            $table->string('state');
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
 
-            $table->text('full_address');
-            $table->string('mobile_number');
+            $table->text('full_address')->nullable();
 
-            $table->enum('type', ['billing', 'shipping']);
-
-            // $table->char('country', 2);
         });
     }
 

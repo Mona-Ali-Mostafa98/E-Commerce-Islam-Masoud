@@ -34,4 +34,32 @@ class Product extends Model
         return $this->hasMany(CommentOnProduct::class, 'product_id', 'id');
     }
 
+
+    // this relation to get data of orders stored in order_product table
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items')
+            ->using(OrderItem::class)
+            ->withPivot([
+                'product_name', 'price', 'quantity', 'options'
+            ]);
+    }
+
+
+   public function products()
+    {
+        return $this->belongsToMany(Order::class, 'order_items', 'order_id', 'product_id', 'id', 'id')
+            ->using(OrderItem::class)
+            ->as('order_item')
+            ->withPivot([
+                'product_name', 'price', 'quantity', 'options',
+        ]);
+    }
+
+
+    public function favoriteUsers()
+    {
+        return $this->belongsToMany(User::class, 'wishlists');
+    }
+
 }

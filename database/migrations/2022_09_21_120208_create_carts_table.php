@@ -14,14 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id');
 
-            $table->uuid('cookie_id');
-
-            $table->foreignId('user_id')
-                    ->constrained('users')
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')
                     ->references('id')
-                    ->onUpdate('cascade')
+                    ->on('users')
                     ->onDelete('cascade');
 
             $table->foreignId('product_id')
@@ -30,13 +28,11 @@ return new class extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
-            $table->unsignedSmallInteger('quantity')->default(1);
+            $table->unsignedSmallInteger('quantity')->default(0);
 
-            $table->json('options')->nullable();
+            $table->primary(['id', 'product_id']);
 
-            $table->unique(['cookie_id', 'product_id']);
-
-            $table->timestamps();
+            // $table->timestamps();
 
         });
     }

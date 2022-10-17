@@ -12,13 +12,13 @@ class OrderAddress extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'order_id', 'type', 'first_name', 'last_name',
-        'city', 'state', 'full_address', 'mobile_number',
+        'order_id', 'address',
+        'city', 'state', 'full_address',
     ];
 
-    public function getNameAttribute()
+    public function order()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->belongsTo(Order::class , 'order_id')->withDefault();
     }
 
 

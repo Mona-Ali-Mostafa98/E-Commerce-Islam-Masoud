@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class OrderItem extends Model
+class OrderItem extends Pivot
 {
     use HasFactory;
 
     protected $fillable = [
-        'order_id', 'product_id' , 'product_name', 'order_price', 'quantity', 'options'
+        'order_id', 'product_id' , 'product_name' , 'product_price', 'quantity'
     ];
 
     protected $table = 'order_items';

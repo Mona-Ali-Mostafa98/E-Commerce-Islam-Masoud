@@ -30,11 +30,9 @@ return new class extends Migration
 
             $table->string('product_name');
 
-            $table->float('order_price');
+            $table->float('product_price');
 
             $table->unsignedSmallInteger('quantity')->default(1);
-
-            $table->json('options')->nullable();
 
             $table->unique(['order_id', 'product_id']);
         });

@@ -10,7 +10,9 @@ class Order extends Model
 use HasFactory;
 
     protected $fillable = [
-        'user_id', 'order_number' , 'payment_method', 'status', 'payment_status', 'shipping_price'
+        'user_id', 'order_number' , 'user_address_id',
+        'payment_method', 'status',
+        'payment_status', 'total_price'
     ];
 
 
@@ -30,7 +32,7 @@ use HasFactory;
             ->using(OrderItem::class)
             ->as('order_item')
             ->withPivot([
-                'product_name', 'price', 'quantity', 'options',
+                'product_name', 'product_price', 'quantity',
         ]);
     }
 
@@ -43,8 +45,13 @@ use HasFactory;
 
 
 
-    public function addresses()
+    // public function addresses()
+    // {
+    //     return $this->hasMany(OrderAddress::class , 'order_id', 'id');
+    // }
+
+    public function address()
     {
-        return $this->hasMany(OrderAddress::class , 'order_id', 'id');
+        return $this->hasOne(OrderAddress::class, 'order_id', 'id')->withDefault();
     }
 }

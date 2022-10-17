@@ -15,7 +15,7 @@ class Setting extends Model
     protected $fillable = [
         'website_logo', 'website_name' ,
         'mobile_number' , 'email' ,
-        'currency_code', 'tax' ,
+        'currency_code', 'tax' , 'shipping_price',
         'about_services' , 'about_offers' , 'privacy_policy',
         'about_us_description' , 'about_us_image' ,
         'our_vision', 'our_message' , 'our_goals' ,

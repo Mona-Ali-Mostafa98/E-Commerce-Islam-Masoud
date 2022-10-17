@@ -13,10 +13,18 @@ class Cart extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
+    //---------- Start Change default of model -------------
+    public $incrementing = false; //Id
+
+    public $timestamps = false;
+
+    protected $keyType = 'string';
+
+    protected $primaryKey = ['id', 'product_id'];
+    //------------------------- End ------------------------
 
     protected $fillable = [
-        'cookie_id', 'user_id', 'product_id', 'quantity', 'options',
+        'id', 'user_id', 'product_id', 'quantity',
     ];
 
 
@@ -31,4 +39,20 @@ class Cart extends Model
     {
         return $this->belongsTo(Product::class , 'product_id', 'id');
     }
+
+
+    // this function used to allow to make two primary key not only one
+    // we can also separate it in trait and use it here
+
+    protected function setKeysForSaveQuery($query)
+    {
+        $query->where([
+            'id'=> $this->attributes['id'],
+            'product_id'=> $this->attributes['product_id']
+        ]);
+
+        return $query;
+    }
+
+
 }
