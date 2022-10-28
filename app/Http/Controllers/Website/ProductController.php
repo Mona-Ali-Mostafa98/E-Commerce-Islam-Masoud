@@ -37,7 +37,7 @@ class ProductController extends Controller
 
         CommentOnProduct::create($data);
 
-        toastr()->success(trans('messages.SentCommentSuccessfully'));
+        toastr()->success(trans('messages.SentCommentSuccessfully') , ' ');
 
         return redirect()->back();
 

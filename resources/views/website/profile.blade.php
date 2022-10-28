@@ -163,14 +163,14 @@
                                             <div class="profile-addr bg-light position-relative p-3 mb-2 rounded-3">
                                                 <div class="user-addr">
                                                     <input type="radio" class="ms-2" name="personal-addr"
-                                                        value="addr" checked>
+                                                        value="{{ $address->id }}" checked>
                                                     <label for="html"
                                                         class="text-muted w-75">{{ $address->full_address }} ,
                                                         {{ $address->city }} , {{ $address->state }}</label>
                                                 </div>
-                                                <button>
+                                                <a href="{{ route('website.user_address_form', $address->id) }}">
                                                     <i class="bi bi-pencil-fill "></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         @endforeach
                                     @endif
@@ -179,33 +179,9 @@
                                 <button type="button"
                                     class="btn custom-btn rounded mb-4">{{ trans('main_translation.AddAddress') }}</button>
                                 <div class="row gy-4">
-                                    <!-- المدينة -->
-                                    <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                                        <label>{{ trans('main_translation.City') }}</label>
-                                        <input name="city" class="form-control" type="text"
-                                            value="{{ old('city') }}">
-                                        @error('city')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
-                                    </div>
-                                    <!-- المحافظة -->
-                                    <div class="col-12 col-sm-6 col-md-12 col-lg-6">
-                                        <label>{{ trans('main_translation.Region') }}</label>
-                                        <input name="state" class="form-control" type="text"
-                                            value="{{ old('state') }}">
-                                        @error('state')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
-                                    </div>
-                                    <!-- العنوان -->
-                                    <div class="col-12">
-                                        <label>{{ trans('main_translation.FullAddress') }}</label>
-                                        <input name="full_address" class="form-control" type="text"
-                                            value="{{ old('full_address') }}">
-                                        @error('full_address')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
-                                    </div>
+
+                                    @include('website.partial._address-form')
+
                                 </div>
                                 <button type="submit"
                                     class="btn custom-btn rounded mt-5">{{ trans('main_translation.Save') }}</button>
@@ -217,93 +193,13 @@
                             <!-- products section -->
                             <section class="products">
                                 <div class="row gy-3">
-                                    <div class="col-lg-4 col-md-6 col-sm-6">
-                                        <div class="product">
-                                            <div class="card">
-                                                <div class="card-img-top">
-                                                    <img src="images/index/product 1.png" alt="...">
-                                                    <div class="fav-eye">
-                                                        <a href=""><i class="bi bi-heart-fill"></i></a>
-                                                        <a type="button" data-bs-toggle="modal" href="#product-details"
-                                                            role="button"><i class="bi bi-eye-fill"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">خلاط سينسور جداري برينتا من جيبريت</h5>
-                                                    <p class="card-text">اسم الماركة يكتب هنا</p>
-                                                    <h5 class="card-title">ريال سعودي 50</h5>
-                                                    <div class="product-rate" rateYo="4"></div>
-                                                    <div class="product-quantity">
-                                                        <a href="javascript:void(0);" class='qtyplus plus quantity'><i
-                                                                class="bi bi-plus-lg"></i></a>
-                                                        <input type='text' name='quantity' value='1'
-                                                            class='qty' readonly />
-                                                        <a href="javascript:void(0);" class='qtyminus minus quantity'><i
-                                                                class="bi bi-dash-lg"></i></a>
-                                                        <button>إضافة للسلة</button>
-                                                    </div>
-                                                </div>
+                                    @foreach ($orders as $order)
+                                        @foreach ($order->products as $product)
+                                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                                @include('website.partial._product-card')
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6">
-                                        <div class="product">
-                                            <div class="card">
-                                                <div class="card-img-top">
-                                                    <img src="images/index/product 1.png" alt="...">
-                                                    <div class="fav-eye">
-                                                        <a href=""><i class="bi bi-heart-fill"></i></a>
-                                                        <a type="button" data-bs-toggle="modal" href="#product-details"
-                                                            role="button"><i class="bi bi-eye-fill"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">خلاط سينسور جداري برينتا من جيبريت</h5>
-                                                    <p class="card-text">اسم الماركة يكتب هنا</p>
-                                                    <h5 class="card-title">ريال سعودي 50</h5>
-                                                    <div class="product-rate" rateYo="4"></div>
-                                                    <div class="product-quantity">
-                                                        <a href="javascript:void(0);" class='qtyplus plus quantity'><i
-                                                                class="bi bi-plus-lg"></i></a>
-                                                        <input type='text' name='quantity' value='1'
-                                                            class='qty' readonly />
-                                                        <a href="javascript:void(0);" class='qtyminus minus quantity'><i
-                                                                class="bi bi-dash-lg"></i></a>
-                                                        <button>إضافة للسلة</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6">
-                                        <div class="product">
-                                            <div class="card">
-                                                <div class="card-img-top">
-                                                    <img src="images/index/product 1.png" alt="...">
-                                                    <div class="fav-eye">
-                                                        <a href=""><i class="bi bi-heart-fill"></i></a>
-                                                        <a type="button" data-bs-toggle="modal" href="#product-details"
-                                                            role="button"><i class="bi bi-eye-fill"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">خلاط سينسور جداري برينتا من جيبريت</h5>
-                                                    <p class="card-text">اسم الماركة يكتب هنا</p>
-                                                    <h5 class="card-title">ريال سعودي 50</h5>
-                                                    <div class="product-rate" rateYo="4"></div>
-                                                    <div class="product-quantity">
-                                                        <a href="javascript:void(0);" class='qtyplus plus quantity'><i
-                                                                class="bi bi-plus-lg"></i></a>
-                                                        <input type='text' name='quantity' value='1'
-                                                            class='qty' readonly />
-                                                        <a href="javascript:void(0);" class='qtyminus minus quantity'><i
-                                                                class="bi bi-dash-lg"></i></a>
-                                                        <button>إضافة للسلة</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endforeach
                                 </div>
                             </section>
                             <!-- products section ends -->
@@ -312,60 +208,73 @@
                         <!-- تتبع الشحنة -->
                         <div class="tab-pane fade" id="v-pills-trace" role="tabpanel"
                             aria-labelledby="v-pills-trace-tab">
-                            <div class="shipment-progress">
-                                <div class="bar">
-                                    <div class="d-none"></div>
-                                    <div class="w-50"></div>
-                                    <div class="w-100 d-none"></div>
+                            @foreach ($orders as $order)
+                            <div class="shipment-progress-container">
+                                <div class="shipment-progress" data-bs-toggle="collapse" data-bs-target="#collapseExample{{$order->id}}" aria-expanded="false" aria-controls="collapseExample">
+                                    <div class="bar">
+                                        <div class="d-none"></div>
+                                        <div class="@if($order->status == "charged") w-50 @else d-none @endif"></div>
+                                        <div class="@if($order->status == "delivering") w-100 @else d-none @endif"></div>
+                                    </div>
+                                    <div class="phases">
+                                        <div class="phase">
+                                            <p>{{ trans('main_translation.Pending') }}</p>
+                                            <p>{{ $order->created_at->format('d/m/Y') }}</p>
+                                        </div>
+                                        <div class="phase">
+                                            <p>{{ trans('main_translation.Charged') }}</p>
+                                            @foreach (Auth::guard('web')->user()->Notifications as $notification)
+                                                @if ($notification->type == 'App\Notifications\OrderUpdatedNotification')
+                                                    @if ($notification->data['status'] == 'charged')
+                                                        <p>{{ $notification->created_at->format('d/m/Y') }}</p>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="phase">
+                                            <p>{{ trans('main_translation.Delivering') }}</p>
+                                            @foreach (Auth::guard('web')->user()->Notifications as $notification)
+                                                @if ($notification->type == 'App\Notifications\OrderUpdatedNotification')
+                                                    @if ($notification->data['status'] == 'delivering')
+                                                        <p>{{ $notification->created_at->format('d/m/Y') ?? '' }}</p>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <button class="btn" type="button">
+                                      <i class="bi bi-caret-down-fill"></i>
+                                    </button>
                                 </div>
-                                <div class="phases">
-                                    <div class="phase">
-                                        <p>تم الطلب</p>
-                                        <p>9/9/2022</p>
-                                    </div>
-                                    <div class="phase">
-                                        <p>تم الشحن</p>
-                                        <p>9/9/2022</p>
-                                    </div>
-                                    <div class="phase">
-                                        <p>تم التوصيل</p>
-                                        <p>9/9/2022</p>
-                                    </div>
+
+                                <div class="updates collapse" id="collapseExample{{$order->id}}">
+                                    <h5>: {{ trans('main_translation.Updates') }}</h5>
+                                    <table>
+                                        <tr>
+                                            <th>{{ trans('main_translation.Date') }}</th>
+                                            <th>{{ trans('main_translation.OrderNumber') }}</th>
+                                            <th>{{ trans('main_translation.Status') }}</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ $order->created_at->format('d/m/Y') }}</td>
+                                            <td>{{ $order->order_number }}</td>
+                                            <td>
+                                                @if ($order->status == 'pending')
+                                                    {{ trans('main_translation.Pending') }}
+                                                @elseif ($order->status == 'charged')
+                                                    {{ trans('main_translation.Charged') }}
+                                                @else
+                                                    {{ trans('main_translation.Delivering') }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <a class="mb-4"
+                                        href="{{ route('website.order_details') }}">{{ trans('main_translation.InvoicePage') }}</a>
                                 </div>
                             </div>
-
-                            <div class="updates">
-                                <h5>: التحديثات</h5>
-                                <table>
-                                    <tr>
-                                        <th>التاريخ</th>
-                                        <th>العنوان</th>
-                                        <th>النوع</th>
-                                        </th>
-                                    <tr>
-                                        <td>20/9/2022</td>
-                                        <td>عنوان المتجر</td>
-                                        <td>تم الطلب</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20/9/2022</td>
-                                        <td>عنوان المتجر</td>
-                                        <td>تم الطلب</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20/9/2022</td>
-                                        <td>عنوان المتجر</td>
-                                        <td>تم الطلب</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20/9/2022</td>
-                                        <td>عنوان المتجر</td>
-                                        <td>تم الطلب</td>
-                                    </tr>
-                                </table>
-
-                                <a href="">صفحة الفاتورة</a>
-                            </div>
+                            @endforeach
 
                         </div>
                     </div>
@@ -375,51 +284,3 @@
     </section>
 
 @endsection
-
-@push('model')
-    <div class="modal fade" id="changePassModal" tabindex="-1" aria-labelledby="changePassModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0 bg-light">
-                    <h5 class="modal-title" id="changePassModalLabel">{{ trans('main_translation.ChangePassword') }}</h5>
-                    <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('website.change_password') }}" method="POST">
-                        @csrf
-                        <div class="profile row align-items-end gy-3">
-                            <!-- الرقم السري -->
-                            <div class="col-12">
-                                <label>{{ trans('main_translation.CurrentPassword') }}</label>
-                                <div class="position-relative">
-                                    <input name="current_password" class="form-control" type="password"
-                                        placeholder="********">
-                                </div>
-                            </div>
-                            <!-- الرقم السري الجديد -->
-                            <div class="col-12">
-                                <label>{{ trans('main_translation.NewPassword') }}</label>
-                                <div class="position-relative">
-                                    <input name="password" class="form-control" type="password" placeholder="********">
-                                </div>
-                            </div>
-                            <!-- تاكيد الرقم السري -->
-                            <div class="col-12">
-                                <label>{{ trans('main_translation.NewPasswordConfirmation') }}</label>
-                                <div class="position-relative">
-                                    <input name="password_confirmation" class="form-control" type="password"
-                                        placeholder="********">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit"
-                                    class="btn custom-btn rounded w-100 my-3">{{ trans('main_translation.Save') }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-@endpush

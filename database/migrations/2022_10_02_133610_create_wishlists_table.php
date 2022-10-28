@@ -27,7 +27,7 @@ return new class extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
-		    $table->unique('product_id' , 'user_id');
+		    // $table->unique('product_id' , 'user_id');
             $table->timestamps();
         });
     }

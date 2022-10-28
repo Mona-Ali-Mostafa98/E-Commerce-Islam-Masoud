@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
+use App\Notifications\OrderUpdatedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class OrderController extends Controller
 {
@@ -44,6 +47,10 @@ class OrderController extends Controller
         $data = $request->except('_token');
 
         $order->update($data);
+
+        $user = User::where('id', $order->user_id)->first();
+
+        Notification::send($user, new OrderUpdatedNotification($order));
 
         toastr()->success(trans('messages.UpdateSuccessfully'));
 

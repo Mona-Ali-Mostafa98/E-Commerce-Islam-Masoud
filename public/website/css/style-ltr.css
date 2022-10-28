@@ -1,0 +1,164 @@
+body{
+    direction: ltr;
+}
+.top-nav .right li {
+    margin-left: 0rem;
+    margin-right: 0.5rem;
+}
+
+.top-nav-cart .sub-menu, .top-nav-notification .sub-menu{
+    left: auto;
+    right: 0;
+}
+.top-nav-cart .sub-menu>a>button {
+    left: auto;
+    right: 5px;
+}
+.top-nav-cart .sub-menu>a>.prod-img {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+.top-nav-notification .sub-menu>a h6, .top-nav-notification .sub-menu>a, .title{
+    text-align: left;
+}
+.steps .title{
+    text-align: center !important;
+}
+.top-nav-notification .sub-menu>a>img {
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.search-box button {
+    right: -1px;
+    left: auto;
+}
+
+.search-box input {
+    padding: 10px 100px 10px 40px;
+}
+.search-box i {
+    right: auto;
+    left: 15px;}
+
+
+.services .serv-hover {
+    transform: translate( 5%,-97%);
+}
+.services .icon span {
+    transform: translate(10.5px, -12px);
+}
+.bi-chevron-left::before, .bi-send-fill::before {
+    transform: rotateY(180deg);
+}
+.product .card-img-top .fav-eye {
+    right: 22rem;
+}
+.product:hover .card-img-top .fav-eye {
+    right: 12rem;
+}
+.product .product-quantity button {
+    padding-right: 0;
+    padding-left: 30px;
+}
+.product .product-quantity a.qtyplus {
+    right: auto;
+    left: 10px;
+}
+.product .product-quantity.active a.qtyminus {
+    left: auto;
+    right: 5px;
+ }
+.blogs .item ul li {
+    margin: 0 0.5rem 0 0;
+    color: #7A7A7A;
+    font-size: 12px;
+}
+.contact-us .contact-us-cyrcle-img {
+    margin-right: 0;
+    margin-left: auto;
+}
+.input-box button {
+    left: auto;
+    right: 0px;
+}
+.input-box i {
+    right: auto;
+    left: 15px;
+}
+footer .social-icons p {
+    margin-left: 0rem;
+    margin-right: 2rem;
+}
+footer .social-icons a {
+    margin-left: 0rem;
+    margin-right: 1rem;
+}
+
+
+
+.steps .step-img {
+    transform: translate(60%,-80%);
+}
+
+.single-blog h3::before {
+    right: auto;
+    left: 0;
+}
+.side-more-blogs .search-box button {
+    left: auto;
+    right: 0px;
+}
+.single-blog ul li {
+    margin-left: 0rem;
+    margin-right: 2rem;
+}
+.side-more-blogs .another-blog img {
+    margin: 0 0.5rem 0 0;
+}
+.single-blog p.line-before::before {
+    left: 0;
+    right: auto;
+}
+
+
+
+.profile .bi-pencil-fill {
+    left: auto;
+    right: 5%;
+}
+.personal-title .user-info {
+    margin-right: 0rem;
+    margin-left: 1rem;
+}
+.personal-title button {
+    margin-left: auto;
+    margin-right: 0;
+}
+.profile .nav .nav-link {
+    border-radius: 10px 50px 50px 10px;
+    text-align: left;
+}
+.profile .row .nav button.nav-link i {
+    left: 7.5%;
+    right: auto;
+}
+.profile .profile-data .tab-content .tab-pane .profile-addr input[type='radio']{
+    margin-left: 0!important;
+    margin-right: 0.5rem!important;
+}
+.user-comment, .sec-small {
+    flex-direction: row-reverse;
+}
+.top-nav-cart .sub-menu>a>form>button{
+    left: auto;
+    right: 5px;
+}
+label.star {
+    float: left !important;
+}
+.description-comments .nav-pills .nav-link {
+    margin-left: 0px;
+    margin-right: 40px;
+    padding: 0px;
+}

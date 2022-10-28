@@ -2,26 +2,45 @@
 @section('page_title', 'E-Commerce Islam Mossaud')
 @section('content')
 
-    {{-- start of slider section --}}
-    <header>
-        <div class="header-overlay">
-            <div class="container-lg">
-                <div class="row align-items-center">
-                    <div class="col-12 col-md-6">
-                        <h2>{{ $slider->title }}</h2>
-                        <p>{{ $slider->description }}</p>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="header-cyrcle-img">
-                            <img src="{{ url('storage/' . $slider->image) }}" alt="">
-                        </div>
-                    </div>
+    <header class="position-relative">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                 <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-            </div>
-        </div>
-    </header>
-    {{-- end of slider section --}}
 
+            </div>
+            <div class="carousel-inner">
+                @foreach ($sliders as $slider)
+                    <div class="carousel-item @if($loop->iteration == 1) active @endif">
+                        <img src="{{ url('storage/' . $slider?->image) }}" class="d-block w-100" alt="...">
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
+        <div class="text-contant">
+            @foreach ($sliders as $slider)
+                @if ($loop->iteration == 1)
+                    <h2>{{ $slider?->title }}</h2>
+                    <p>{{ $slider?->description }}</p>
+
+                    <form action="{{ route('website.search') }}" method="GET">
+                        <div class="search-box">
+                            <i class="bi bi-search"></i>
+                            <input name="product_name" type="search"
+                                placeholder="{{ trans('main_translation.SearchHere') }}">
+                            <button>{{ trans('main_translation.Search') }}</button>
+                        </div>
+                    </form>
+                @endif
+            @endforeach
+
+        </div>
+
+    </header>
 
     {{-- start of services section --}}
     <section class="services py-5">
@@ -59,7 +78,9 @@
             <div class="row align-items-stretch">
 
                 @foreach ($products as $product)
-                    @include('website.partial._product-card')
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+                        @include('website.partial._product-card')
+                    </div>
                 @endforeach
 
             </div>
@@ -111,8 +132,12 @@
             </div>
 
             <div class="row align-items-stretch">
-                @foreach ($best_selling_products as $product)
-                    @include('website.partial._product-card')
+                @foreach ($products as $product)
+                    @if ($product->best_selling == 1)
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+                            @include('website.partial._product-card')
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -146,7 +171,8 @@
                                                 class="bi bi-calendar-date-fill"></i>{{ $blog->created_at?->translatedFormat('j F Y ') ?? 'N/A' }}
                                         </li>
                                         <li><i class="bi bi-pencil-square"></i> {{ $blog->admin->name }}</li>
-                                        <li><i class="bi bi-eye-fill"></i> 5 مرات المشاهدة</li>
+                                        <li><i class="bi bi-eye-fill"></i> {{ $blog->views_number }}
+                                            {{ trans('main_translation.ViewsNumber') }}</li>
                                     </ul>
                                 @endif
                                 <h5 class="card-title">{{ $blog->title }}</h5>
@@ -165,83 +191,4 @@
     </section>
     {{-- end of blogs section --}}
 
-
 @endsection
-
-@push('model')
-    <!-- Modal -->
-    <div class="modal fade" id="product-details" tabindex="-1" aria-labelledby="product-detailsLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-body singleProduct">
-                    <div class="container product-details py-5">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-5">
-                                <div class="single-img">
-                                    <div class="all">
-                                        <div class="slider">
-                                            <div class="owl-carousel owl-theme one">
-                                                @foreach ($product->images as $product_image)
-                                                    <div class="item active">
-                                                        <img src="{{ $product_image->product_image_url }}" alt="">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        <div class="slider-two">
-                                            <div class="owl-carousel owl-theme two">
-                                                @foreach ($product->images as $product_image)
-                                                    <div class="item-box">
-                                                        <img src="{{ $product_image->product_image_url }}" alt="">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-7">
-                                <div class="cart-product-item bg-transparent">
-                                    <div class="col-12">
-                                        <div class="p-2">
-                                            <div
-                                                class="cart-product-name d-flex justify-content-between align-items-center mb-2">
-                                                <h4 class="title">{{ $product->product_name }}</h4>
-                                                <i class="bi bi-suit-heart-fill bi-icon"></i>
-                                            </div>
-                                            <div>
-                                                <p>{{ $product->product_model }}</p>
-                                                <div id="rateYo" class="mb-4" rateYo="3"></div>
-                                            </div>
-                                            <div class="price py-3">
-                                                <h3>{{ $product->product_price }} {{ $settings->currency_code }}</h3>
-                                            </div>
-                                            <div class="product-preview">
-                                                <h4 class="py-3">{{ trans('main_translation.ProductDetails') }}</h4>
-                                                {{ $product->product_details }}
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-quantity">
-                                                    <a href="javascript:void(0);" class="qtyplus plus quantity"><i
-                                                            class="bi bi-plus-lg"></i></a>
-                                                    <input type="text" name="quantity" value="1"
-                                                        class="qty" />
-                                                    <a href="javascript:void(0);" class="qtyminus minus quantity"><i
-                                                            class="bi bi-dash-lg"></i></a>
-                                                </div>
-                                                <button class="add-to-cart">
-                                                    <i class="bi bi-cart-fill"></i>
-                                                    {{ trans('main_translation.AddToCart') }}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endpush

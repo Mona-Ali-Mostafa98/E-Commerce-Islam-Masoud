@@ -297,9 +297,10 @@
                         <div class="form-group">
                             <label
                                 for="privacy_policy">{{ trans('main_translation.PrivacyPolicy_' . $language) }}</label>
-                            <textarea name="privacy_policy[{{ $language }}]" id="privacy_policy" class="summernote form-control ">
+                            <textarea name="privacy_policy[{{ $language }}]" id="privacy_policy" class="summernote form-control">
                                 {{ old("privacy_policy.$language", $privacy_policy[$language] ?? '') }}
                             </textarea>
+
                             @error("privacy_policy.$language")
                                 <p class="danger mt-1">{{ $message }}
                                 </p>

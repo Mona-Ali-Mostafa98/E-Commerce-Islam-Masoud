@@ -32,7 +32,7 @@ class ContactController extends Controller
 
         Notification::send($admins, new ContactUsNotification($contact));
 
-        toastr()->success(trans('messages.SentSuccessfully'));
+        toastr()->success(trans('messages.SentSuccessfully') , ' ');
 
         return redirect()->route('website.index');
 

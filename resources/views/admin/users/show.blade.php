@@ -198,7 +198,7 @@
                                                             </thead>
 
                                                             <tbody>
-                                                                @forelse ($favorite_products as $favorite_product)
+                                                                @forelse ($products_favorite as $favorite_product)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
                                                                         <td>

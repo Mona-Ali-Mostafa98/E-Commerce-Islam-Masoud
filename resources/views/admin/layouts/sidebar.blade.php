@@ -63,11 +63,11 @@
                                         class="menu-item"
                                         data-i18n="List">{{ trans('main_translation.SlidersList') }}</span></a>
                             </li>
-                            {{-- <li class="{{ Request::is('*admin/sliders/create') ? 'active' : '' }}">
+                            <li class="{{ Request::is('*admin/sliders/create') ? 'active' : '' }}">
                             <a href="{{ route('admin.sliders.create') }}"><i class="feather icon-circle"></i><span
                                     class="menu-item"
                                     data-i18n="Edit">{{ trans('main_translation.AddSlider') }}</span></a>
-                        </li> --}}
+                        </li> 
                         </ul>
                     </li>
                 @endcan

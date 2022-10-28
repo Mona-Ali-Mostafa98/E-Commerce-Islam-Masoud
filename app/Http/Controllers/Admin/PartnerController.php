@@ -25,8 +25,8 @@ class PartnerController extends Controller
 
     public function index()
     {
-        $partners = Partner:: all();
-        return view('admin.partners.index', compact('partners'));
+        $site_partners = Partner:: all();
+        return view('admin.partners.index', compact('site_partners'));
     }
 
     public function create()

@@ -69,7 +69,7 @@
                                                             </thead>
 
                                                             <tbody>
-                                                                @foreach ($partners as $partner)
+                                                                @foreach ($site_partners as $partner)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
                                                                         <td><img src="{{ url('storage/' . $partner->partner_image) }}"

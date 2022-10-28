@@ -49,9 +49,7 @@
                                                 <td class="font-weight-bold text-primary">
                                                     {{ trans('main_translation.Image') }} : </td>
                                                 <td>
-                                                    <img class="m-1" id="image"
-                                                        src="{{ url('storage/' . $service->image) }}" alt=""
-                                                        height="100" width="150">
+                                                    {!! $service->image !!}
                                                 </td>
                                             </tr>
                                             <tr>

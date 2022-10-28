@@ -34,7 +34,7 @@ class StoreServiceRequest extends FormRequest
             'description.ar' => 'required|string',
             'description.en' => 'required|string',
 
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|string',
 
             'status'=>['sometimes','required' , Rule::in(['show', 'hide'])]
         ];

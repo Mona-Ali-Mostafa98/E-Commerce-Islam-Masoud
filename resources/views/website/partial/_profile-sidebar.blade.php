@@ -1,7 +1,8 @@
 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
     <!-- الملف الشخصي -->
-    <button class="nav-link active" id="v-pills-info-tab" data-bs-toggle="pill" data-bs-target="#v-pills-info" type="button"
-        role="tab" aria-controls="v-pills-info" aria-selected="true">{{ trans('main_translation.Profile') }}
+    <button class="{{ Request::is('*website/profile*') ? 'nav-link active' : 'nav-link' }}" id="v-pills-info-tab"
+        data-bs-toggle="pill" data-bs-target="#v-pills-info" type="button" role="tab" aria-controls="v-pills-info"
+        aria-selected="true">{{ trans('main_translation.Profile') }}
         <i class="bi bi-person"></i>
     </button>
 
@@ -12,8 +13,9 @@
     </button>
 
     <!-- العنوان -->
-    <button class="nav-link" id="v-pills-addr-tab" data-bs-toggle="pill" data-bs-target="#v-pills-addr" type="button"
-        role="tab" aria-controls="v-pills-addr" aria-selected="false">{{ trans('main_translation.Address') }}
+    <button class="{{ Request::is('*website/user_address_form/*') ? 'nav-link active' : 'nav-link' }}"
+        id="v-pills-addr-tab" data-bs-toggle="pill" data-bs-target="#v-pills-addr" type="button" role="tab"
+        aria-controls="v-pills-addr" aria-selected="false">{{ trans('main_translation.Address') }}
         <i class="bi bi-geo-alt"></i>
     </button>
 

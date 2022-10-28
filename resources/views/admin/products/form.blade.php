@@ -98,7 +98,7 @@
                     ({{ trans('main_translation.CanAttachMoreThanImage') }})</label>
                 <div class="custom-file mb-1">
                     <input type="file" name="product_image[]" id="fileupload" accept="image/*"
-                        class="custom-file-input @error('product_image') is-invalid @enderror" multiple required>
+                        class="custom-file-input @error('product_image') is-invalid @enderror" multiple>
                     <label class="custom-file-label"
                         for="inputGroupFile01">{{ trans('main_translation.ProductImage') }}</label>
                     @error('product_image')

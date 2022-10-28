@@ -14,9 +14,9 @@
     </div>
     <!------------- end of breadcrumb -------------->
 
-    <section class="terms py-5">
+    <section class="terms pb-5">
         <div class="container">
-            <div class="p-5">
+            <div class="px-5">
                 {!! $settings->privacy_policy !!}
             </div>
         </div>

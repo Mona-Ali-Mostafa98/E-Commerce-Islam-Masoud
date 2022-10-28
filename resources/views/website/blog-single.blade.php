@@ -8,8 +8,7 @@
             <div class="d-flex align-items-center py-4 breadcrumb">
                 <a href="{{ route('website.index') }}" class="text-muted">{{ trans('main_translation.HomePage') }}</a>
                 <i class="bi bi-chevron-left mx-2"></i>
-                <a href="{{ route('website.blogs') }}"
-                    class="text-muted">{{ trans('main_translation.BestSellingProducts') }}</a>
+                <a href="{{ route('website.blogs') }}" class="text-muted">{{ trans('main_translation.WebsiteBlogs') }}</a>
                 <i class="bi bi-chevron-left mx-2"></i>
                 <h6>{{ $blog->title }}</h6>
             </div>

@@ -16,7 +16,7 @@
 
     <section class="about py-5">
         <div class="container">
-            <div class="row">
+            <div class="row gy-5">
                 <div class="col-md-6 col-12"data-aos="fade-left" data-aos-duration="800">
                     <h4 class="title pb-4">
                         <p class="before-title"></p>

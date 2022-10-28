@@ -41,7 +41,7 @@ Route::group(
             Route::get('/settings/edit', [SettingController ::class, 'edit'])->name('settings.edit');
             Route::put('/settings/update/{setting}', [SettingController::class, 'update'])->name('settings.update');
 
-            Route::resource('offers', OfferController::class);
+            // Route::resource('offers', OfferController::class);
             Route::resource('partners', PartnerController::class);
             Route::resource('services', ServiceController::class);
 
@@ -52,6 +52,7 @@ Route::group(
 
 
             Route::resource('products', ProductController::class);
+            Route::get('delete_product_image/{image_id}', [ProductController::class , 'delete_product_image'])->name('delete_product_image');
 
             Route::resource('galleries', GalleryController::class);
 
@@ -64,6 +65,8 @@ Route::group(
             Route::resource('contacts', ContactController::class)->only('index' , 'show' , 'destroy');
 
             Route::resource('subscribes', SubscribeController::class)->only('index' , 'destroy');
+
+            // Route::post('mark-as-read',  [DashboardController::class, 'markNotification'])->name('markNotification');
 
         });
 

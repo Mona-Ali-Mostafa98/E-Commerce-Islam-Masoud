@@ -72,9 +72,8 @@
                                                                 @forelse($website_services as $service)
                                                                     <tr role="row" class="odd">
                                                                         <td>{{ $loop->iteration }}</td>
-                                                                        <td><img src="{{ url('storage/' . $service->image) }}"
-                                                                                alt="" height="60"
-                                                                                width="60"></td>
+                                                                        <td> {!! $service->image !!}
+                                                                        </td>
                                                                         <td class="text-success fw-bold">
                                                                             {{ $service->title }}</td>
                                                                         <td>

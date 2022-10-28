@@ -1,5 +1,5 @@
 @extends('website.auth.layout')
-@section('page_title', 'Register')
+@section('page_title', 'Login')
 @section('content')
 
     <section class="register-login bg-white">
@@ -10,7 +10,7 @@
                         @csrf
                         <div class="mb-3">
                             <a href="" class="register-login-by-facebook"> <i class="fa-brands fa-facebook-f"></i>
-                                {{ trans('main_translation.LoginWithFaceboook') }} </a>
+                                {{ trans('main_translation.LoginWithFacebook') }} </a>
                         </div>
                         <div class="mb-3">
                             <a href="" class="register-login-by-google"> <img
@@ -36,7 +36,7 @@
                         <button type="submit">{{ trans('main_translation.Login') }}</button>
 
                         <div class="remember-me mb-4">
-                            <a href="remember-me.html">{{ trans('main_translation.RemeberMe') }}</a>
+                            <a href="remember-me.html">{{ trans('main_translation.RememberMe') }}</a>
                             <a href="change-pass.html">{{ trans('main_translation.ForgetPassword') }}</a>
                         </div>
 

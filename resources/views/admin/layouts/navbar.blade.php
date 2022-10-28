@@ -56,31 +56,64 @@
 
                         <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label"
                                 href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span
-                                    class="badge badge-pill badge-primary badge-up">5</span></a>
+                                    class="badge badge-pill badge-primary badge-up">{{ Auth::guard('admin')->user()->unreadNotifications->count() }}</span></a>
                             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header m-0 p-2">
-                                        <h3 class="white">5 New</h3><span class="notification-title">App
-                                            Notifications</span>
+                                        <h3 class="white">
+                                            {{ Auth::guard('admin')->user()->unreadNotifications->count() }}
+                                            {{ trans('main_translation.Notification') }}
+                                        </h3><span class="notification-title">{{ trans('main_translation.New') }}</span>
                                     </div>
                                 </li>
                                 <li class="scrollable-container media-list">
-                                    <a class="d-flex justify-content-between" href="javascript:void(0)">
-                                        <div class="media d-flex align-items-start">
-                                            <div class="media-left"><i
-                                                    class="feather icon-plus-square font-medium-5 primary"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="primary media-heading">You have new order!</h6><small
-                                                    class="notification-text"> Are your going to meet me
-                                                    tonight?</small>
-                                            </div><small>
-                                                <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">9 hours
-                                                    ago</time></small>
+                                    @forelse (Auth::guard('admin')->user()->unreadNotifications as $notification)
+                                        @if ($notification->type == 'App\Notifications\ContactUsNotification')
+                                            <a class="d-flex justify-content-between" href="javascript:void(0)">
+                                                <div class="media d-flex align-items-start">
+                                                    <div class="media-left"><i
+                                                            class="feather icon-plus-square font-medium-5 primary"></i>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="primary media-heading">
+                                                            {{ $notification->data['title'] }}
+                                                            {{ $notification->data['name'] }}
+                                                        </h6><small
+                                                            class="notification-text">{{ $notification->data['email'] }}</small>
+                                                    </div><small>
+                                                        <time class="media-meta"
+                                                            datetime="2015-06-11T18:29:20+08:00">{{ $notification->created_at->diffForHumans(now()) }}</time></small>
+                                                </div>
+                                            </a>
+                                        @elseif($notification->type == 'App\Notifications\OrderCreatedNotification')
+                                            <a class="d-flex justify-content-between" href="javascript:void(0)">
+                                                <div class="media d-flex align-items-start">
+                                                    <div class="media-left"><i
+                                                            class="feather icon-plus-square font-medium-5 primary"></i>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="primary media-heading">
+                                                            {{ $notification->data['title'] }}
+                                                            {{ \App\Models\User::where('id', $notification->data['user_id'])->first()->full_name }}
+                                                        </h6><small
+                                                            class="notification-text">{{ trans('main_translation.OrderPrice') }}{{ $notification->data['total_price'] }}
+                                                            {{ $settings->currency_code }}</small>
+                                                    </div><small>
+                                                        <time class="media-meta"
+                                                            datetime="2015-06-11T18:29:20+08:00">{{ $notification->created_at->diffForHumans(now()) }}</time></small>
+                                                </div>
+                                            </a>
+                                        @endif
+                                    @empty
+                                        <div class="media d-flex justify-content-center">
+                                            {{ trans('main_translation.NoNotification') }}
                                         </div>
-                                    </a>
+                                    @endforelse
                                 </li>
                                 <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center"
-                                        href="javascript:void(0)">View all notifications</a></li>
+                                        href="#">{{ trans('main_translation.ViewAllNotifications') }}</a>
+                                </li>
+                                {{-- {{ route('admin.notifications') }} --}}
                             </ul>
                         </li>
 

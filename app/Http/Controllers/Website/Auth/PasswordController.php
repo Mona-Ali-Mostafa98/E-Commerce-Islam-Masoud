@@ -27,7 +27,7 @@ class PasswordController extends Controller
         // Match The Old Password
         if(!Hash::check($request->current_password, $auth_user->password)){
 
-            toastr()->error(trans('messages.CurrentPasswordNotMatch'));
+            toastr()->error(trans('messages.CurrentPasswordNotMatch') , ' ');
             return redirect()->back();
         }
 
@@ -37,7 +37,7 @@ class PasswordController extends Controller
             'password' => $request->password
         ]);
 
-        toastr()->success(trans('messages.PasswordUpdatedSuccessfully'));
+        toastr()->success(trans('messages.PasswordUpdatedSuccessfully') , ' ');
 
         auth()->guard('web')-> logout() ;
 

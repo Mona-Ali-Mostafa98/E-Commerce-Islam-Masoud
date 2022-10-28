@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 
 
-  // user sub menu 
+  // user sub menu
 
   $(".top-nav-user").click(function(){
     $(".top-nav-user .sub-menu").toggleClass("d-flex");
@@ -21,7 +21,7 @@ $(document).ready(function () {
   });
 
 
-  // notification sub menu 
+  // notification sub menu
 
   $(".top-nav-notification").click(function(){
     $(".top-nav-notification .sub-menu").toggleClass("d-flex");
@@ -33,8 +33,8 @@ $(document).ready(function () {
     $(".top-nav-notification .sub-menu").removeClass("d-flex");
   });
 
-  
-  // cart sub menu 
+
+  // cart sub menu
 
   $(".top-nav-cart").click(function(){
     $(".top-nav-cart .sub-menu").toggleClass("d-flex");
@@ -138,7 +138,7 @@ if ($(".form-addbuilder .profile-pic").length > 0) {
   const file = document.querySelector('#file');
   const uploadBtn = document.querySelector('#uploadBtn');
 
-  //if user hover on img div 
+  //if user hover on img div
 
   imgDiv.addEventListener('mouseenter', function(){
       uploadBtn.style.display = "block";
@@ -155,7 +155,7 @@ if ($(".form-addbuilder .profile-pic").length > 0) {
   file.addEventListener('change', function(){
   const choosedFile = this.files[0];
   if (choosedFile) {
-      const reader = new FileReader(); 
+      const reader = new FileReader();
       reader.addEventListener('load', function(){
           img.setAttribute('src', reader.result);
       });
@@ -171,13 +171,13 @@ $('.quantity.plus').click(function(e) {
     $input.val( val+1 ).change();
 
   });
-  
+
   $('.quantity.minus').click(function(e) {
     let $input = $(this).prev('input.qty');
     var val = parseInt($input.val());
     if (val > 1) {
         $input.val( val-1 ).change();
-    } 
+    }
   });
 
   $('.product .quantity.plus').mouseover(function(){
@@ -208,7 +208,7 @@ $(function () {
       ratedFill: "#FFC107",
       readOnly: true
     });
-  
+
     $("#your-rate").rateYo({
       starWidth: "15px",
       ratedFill: "#FFC107",
@@ -258,54 +258,7 @@ if ($(window).width() < 600) {
     var slide = changeSlide;
 }
 
-$('.one').owlCarousel({
-  nav: false,
-  items: 1,
-rtl:true,
-autoplay: 5000,
 })
-$('.two').owlCarousel({
-  nav: false,
-  margin: 10,
-  responsive: {
-      0: {
-          items: changeSlide - 1,
-          slideBy: changeSlide - 1
-      },
-      600: {
-          items: changeSlide,
-          slideBy: changeSlide
-      },
-      1000: {
-          items: changeSlide + 1,
-          slideBy: changeSlide + 1
-      }
-  }
-})
-var owl = $('.one');
-owl.owlCarousel();
-owl.on('translated.owl.carousel', function (event) {
-
-  $('.slider-two .item').removeClass("active");
-  var c = $(".slider .owl-item.active").index();
-  $('.slider-two .item').eq(c).addClass("active");
-  var d = Math.ceil((c + 1) / (slide)) - 1;
-  $(".slider-two .owl-dots .owl-dot").eq(d).trigger('click');
-})
-
-$('.slider-two .item').click(function () {
-  var b = $(".item").index(this);
-  $(".slider .owl-dots .owl-dot").eq(b).trigger('click');
-  $(".slider-two .item").removeClass("active");
-  $(this).addClass("active");
-});
-var owl2 = $('.two');
-owl2.owlCarousel();
-  
-})  
-
-//  aos animation
-AOS.init();
 
 
 

@@ -35,7 +35,7 @@ class UpdateAdminRequest extends FormRequest
 
             'mobile_number' => ['nullable','string', 'min:9' ,'max:14', Rule::unique('admins')->ignore($this->admin)],  //'regex:/^(009665|9665|\+9665|05|5)([013456789])([0-9]{7})$/' , =>(009665|9665|\+9665|05|5)  ((5|0|3|6|4|9|1|8|7)مفتاح الشركه) (خانات)
 
-            'password' => ['sometimes' , 'nullable', Password::min(8) ,'max:20', 'confirmed'],
+            'password' => ['sometimes' , 'nullable', 'min:8' ,'max:20', 'confirmed'], //error undefined array key table when update password  because Password::min
             'password_confirmation' => ['sometimes' ,  'nullable','same:password'],
 
             'status' => ['sometimes','required', Rule::in(['active' , 'inactive'])] ,

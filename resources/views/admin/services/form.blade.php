@@ -52,20 +52,15 @@
 
         <div class="col-lg-6 col-md-12">
             <fieldset class="form-group">
-                <label for="service_image">{{ trans('main_translation.UploadImage') }}</label>
-                <div class="custom-file mb-1">
-                    <input type="file" name="image" id="service_image"
-                        class="custom-file-input @error('image') is-invalid @enderror" id="inputGroupFile01"
-                        onchange="document.getElementById('image').src = window.URL.createObjectURL(this.files[0])">
-                    <label class="custom-file-label"
-                        for="inputGroupFile01">{{ trans('main_translation.UploadImage') }}</label>
-                    @error('image')
-                        <p class="danger">{{ $message }}
-                        </p>
-                    @enderror
-                </div>
-                <img id="image" src="{{ url('storage/' . $service->image) }}" style="height: 80px; width: 100px;"
-                    alt="no image uploaded">
+                <label for="service_image">{{ trans('main_translation.UploadIcon') }}</label>
+                <input name="image" type="text" id="image"
+                    placeholder="{{ trans('main_translation.EnterIcon') }}"
+                    value="{{ old('image', $service->image) }}"
+                    class="form-control @error('image') is-invalid @enderror">
+                @error('image')
+                    <p class="danger mt-1">{{ $message }}</p>
+                @enderror
+
             </fieldset>
         </div>
 

@@ -71,11 +71,11 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $favorite_products = Wishlist::where('user_id' , $user->id)->with('user','product')->get();
+        $products_favorite = Wishlist::where('user_id' , $user->id)->with('user','product')->get();
         $user_orders = Order::where('user_id' , $user->id)->with('user')->get();
         $cart_products = Cart::where('user_id' , $user->id)->with('user')->get();
 
-        return view('admin.users.show', compact('user' , 'favorite_products' , 'user_orders' , 'cart_products'));
+        return view('admin.users.show', compact('user' , 'products_favorite' , 'user_orders' , 'cart_products'));
     }
 
 

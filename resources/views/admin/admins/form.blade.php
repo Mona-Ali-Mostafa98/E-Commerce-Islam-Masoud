@@ -121,18 +121,17 @@
         <div class="col-lg-6 col-md-12">
             <fieldset class="form-group">
                 <label for="rolesSelect">{{ trans('main_translation.AdminRoles') }}</label>
-                @foreach ($roles as $key => $role)
-                    <select name="roles_name[{{ $key }}]"
+                <select name="roles_name[]"
+                    @foreach ($roles as $key => $role)
                         class="form-control @error("roles_name.$key") is-invalid @enderror" id="rolesSelect"
                         size="2" multiple="multiple">
                         <option value="{{ $role->name }}" @if (old("roles_name.$key", isset($admin->roles_name[$key]))) selected @endif>
-                            {{ $role->name }}</option>
+                            {{ $role->name }}</option> @endforeach
                     </select>
-                @endforeach
 
-                @error('roles_name.*')
-                    <p class="danger">{{ $message }}</p>
-                @enderror
+                    @error('roles_name.*')
+                        <p class="danger">{{ $message }}</p>
+                    @enderror
             </fieldset>
         </div>
     </div>

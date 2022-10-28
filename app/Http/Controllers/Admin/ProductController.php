@@ -7,9 +7,13 @@ use App\Http\Requests\Products\StoreProductRequest;
 use App\Http\Requests\Products\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\User;
+use App\Notifications\ProductAddedNotification;
 use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Throwable;
 use Illuminate\Support\Str;
@@ -83,6 +87,10 @@ class ProductController extends Controller
             }
 
             DB::commit();
+
+            $user = User::where('receive_notifications' , 1)->get();
+
+            Notification::send($user, new ProductAddedNotification($product));
 
             toastr()->success(trans('messages.AddSuccessfully'));
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Website\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UpdateUserRequest;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Traits\UploadImageTrait;
@@ -45,19 +47,19 @@ class AuthController extends Controller
         if($user->status == "active"){
             if(!auth()->guard('web')-> attempt(['mobile_number'=> $data['mobile_number'],'password'=> $data['password']]))
             {
-                toastr()->error(trans('messages.LoginFailed'));
+                toastr()->error(trans('messages.LoginFailed') , ' ');
 
                 return back();
             }
             else
             {
-                toastr()->success(trans('messages.LoginSuccessfully'));
+                toastr()->success(trans('messages.LoginSuccessfully') , ' ');
 
                 return redirect(session('link'));
             }
         }else
         {
-            toastr()->error(trans('messages.AccountNotActivate'));
+            toastr()->error(trans('messages.AccountNotActivate') , ' ');
 
             return back();
         }
@@ -79,7 +81,7 @@ class AuthController extends Controller
 
         auth()->guard('web')->login($user); //to register and make login
 
-        toastr()->success(trans('messages.CreatedAccountSuccessfully'));
+        toastr()->success(trans('messages.CreatedAccountSuccessfully') , ' ');
 
         return redirect()->route('website.index');
     }
@@ -89,10 +91,12 @@ class AuthController extends Controller
     {
         $auth_user = Auth::guard('web')->user();
 
+        $orders = Order::with('products')->where('user_id' , $auth_user?->id)->get();
+
         if($auth_user){
             $user = User::where('id', $auth_user->id)->first();
 
-            return view('website.profile', compact('user'));
+            return view('website.profile', compact('user' ,'orders'));
 
         }else{
             return redirect()->route('website.show_login_form');
@@ -120,7 +124,7 @@ class AuthController extends Controller
             Storage::disk('public')->delete($old_image);
         }
 
-        toastr()->success(trans('messages.UpdatedAccountSuccessfully'));
+        toastr()->success(trans('messages.UpdatedAccountSuccessfully') , ' ');
 
         return redirect()->route('website.profile');
     }
@@ -130,7 +134,7 @@ class AuthController extends Controller
     {
         auth()->guard('web')-> logout() ;
 
-        toastr()->success(trans('messages.LogoutSuccessfully'));
+        toastr()->success(trans('messages.LogoutSuccessfully') , ' ');
 
         return redirect()->back();
     }
@@ -154,10 +158,44 @@ class AuthController extends Controller
                     'user_id' =>  $user_id ,
                 ]);
 
-        toastr()->success(trans('messages.AddAddressSuccessfully'));
+        toastr()->success(trans('messages.AddAddressSuccessfully') , ' ');
+
+        return redirect()->back();
+    }
+
+
+    public function user_address_form(UserAddress $user_address)
+    {
+        $user = Auth::guard('web')->user() ;
+
+        $orders = Order::with('products')->where('user_id' , $user?->id)->get();
+
+        return view('website.update_user_address' , compact('user_address' ,'user' , 'orders' ));
+    }
+
+
+
+    public function update_user_address(Request $request , UserAddress $user_address)
+    {
+        $data = $request->validate([
+            'user_id' => ['sometimes' , 'required', 'exists:users,id'],
+            'city' => ['sometimes' , 'required','string'],
+            'state' => ['sometimes' , 'required','string'],
+            'full_address' => ['sometimes' , 'required' , 'string' ],
+        ]);
+
+        $user_id = Auth::guard('web')->user()->id ;
+
+        $user_address->update([
+                    'city' => $data['city'],
+                    'state' => $data['state'],
+                    'full_address' => $data['full_address'],
+                    'user_id' =>  $user_id ,
+                ]);
+
+        toastr()->success(trans('messages.UpdateAddressSuccessfully') , ' ');
 
         return redirect()->route('website.profile');
     }
-
 
 }

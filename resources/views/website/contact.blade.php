@@ -23,7 +23,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">{{ trans('main_translation.Name') }}</label>
                             <input name="full_name" type="text" class="form-control" id=""
-                                placeholder="{{ trans('main_translation.EnterName') }}">
+                                value="{{ old('full_name') }}" placeholder="{{ trans('main_translation.EnterName') }}">
                             @error('full_name')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
@@ -31,7 +31,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">{{ trans('main_translation.Email') }}</label>
                             <input name="email" type="email" class="form-control" id=""
-                                placeholder="{{ trans('main_translation.EnterEmail') }}">
+                                value="{{ old('email') }}" placeholder="{{ trans('main_translation.EnterEmail') }}">
                             @error('email')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
@@ -39,6 +39,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">{{ trans('main_translation.MobileNumber') }}</label>
                             <input name="mobile_number" type="tel" class="form-control" id=""
+                                value="{{ old('mobile_number') }}"
                                 placeholder="{{ trans('main_translation.EnterMobileNumber') }}">
                             @error('mobile_number')
                                 <strong class="text-danger">{{ $message }}</strong>
@@ -47,7 +48,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">{{ trans('main_translation.Message') }}</label>
                             <textarea name="message" type="text" rows="5" class="form-control" id=""
-                                placeholder="{{ trans('main_translation.EnterMessage') }}"></textarea>
+                                placeholder="{{ trans('main_translation.EnterMessage') }}">{{ old('message') }}</textarea>
                             @error('message')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror

@@ -34,7 +34,7 @@ class UpdateServiceRequest extends FormRequest
             'description.ar' => 'sometimes|required|string',
             'description.en' => 'sometimes|required|string',
 
-            'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'sometimes|required|string',
             'status'=>['sometimes','required' , Rule::in(['show', 'hide'])]
         ];
     }

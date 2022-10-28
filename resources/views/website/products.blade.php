@@ -17,9 +17,15 @@
     <section class="products mb-5">
         <div class="container-lg py-5">
             <div class="row py-5">
-                @foreach ($products as $product)
-                    @include('website.partial._product-card')
-                @endforeach
+                @forelse ($products as $product)
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        @include('website.partial._product-card')
+                    </div>
+                @empty
+                    <div class="fs-3 text-center">
+                        {{ trans('main_translation.NoProductsWithThisName') }}
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>

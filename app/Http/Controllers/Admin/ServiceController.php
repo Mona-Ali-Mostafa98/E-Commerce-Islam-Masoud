@@ -26,7 +26,7 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $website_services = Service:: all();
+        $website_services = Service::orderBy('id' , 'DESC')->get();
         return view('admin.services.index', compact('website_services'));
     }
 
@@ -38,8 +38,7 @@ class ServiceController extends Controller
 
     public function store(StoreServiceRequest $request)
     {
-        $data = $request->except('image' , '_token');
-        $data['image'] = $this->uploadImage($request, 'image', 'services');
+        $data = $request->except( '_token');
 
         Service::create($data);
 
@@ -67,17 +66,7 @@ class ServiceController extends Controller
     public function update(UpdateServiceRequest $request , Service $service)
     {
         $old_image = $service->image;
-        $data = $request->except('image' , '_token');
-
-        $data['image'] = $this->uploadImage($request, 'image', 'services');
-
-        if(!$request->hasFile('image')){
-            unset($data['image']);
-        }
-
-        if ($old_image && isset($data['image'])) {
-            Storage::disk('public')->delete($old_image);
-        }
+        $data = $request->except('_token');
 
         $service->update($data);
 
@@ -89,9 +78,6 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service -> delete();
-        if ($service->image) {
-            Storage::disk('public')->delete($service->image);
-        }
 
         toastr()->success(trans('messages.DeleteSuccessfully'));
 

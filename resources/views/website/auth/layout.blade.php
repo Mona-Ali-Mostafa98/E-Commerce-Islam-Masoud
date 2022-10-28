@@ -40,6 +40,8 @@
 
     @if (App::getLocale() == 'en')
         <!-- custom css file link  -->
+        <link rel="stylesheet" href="{{ url('website/css/style.css') }}" />
+
         <link rel="stylesheet" href="{{ url('website/css/style-ltr.css') }}">
     @else
         <!-- custom css file link  -->

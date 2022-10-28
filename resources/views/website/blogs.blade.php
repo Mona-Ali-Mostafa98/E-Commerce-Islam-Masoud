@@ -18,7 +18,7 @@
         <div class="container-lg py-5">
             <div class="row py-5">
                 @foreach ($blogs as $blog)
-                    <div class="col-12 col-lg-4 col-md-6 mb-5">
+                    <div class="col-12 col-lg-4 col-sm-6 mb-5">
                         <div class="item">
                             <div class="card">
                                 <img src="{{ url('storage/' . $blog->cover_image) }}" class="card-img-top" alt="...">

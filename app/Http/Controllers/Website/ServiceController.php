@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $website_services = Service::where('status' ,'show')->latest()->take(4)->get();
+        $website_services = Service::where('status' ,'show')->latest()->get();
 
         return view('website.services' , compact('website_services'));
     }

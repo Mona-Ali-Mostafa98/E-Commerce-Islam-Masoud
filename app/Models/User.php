@@ -61,7 +61,7 @@ class User extends Authenticatable
     }
 
 
-        public function favorite_products()
+    public function favorite_products()
     {
         return $this->belongsToMany(Product::class, 'wishlists')->withTimestamps();
     }

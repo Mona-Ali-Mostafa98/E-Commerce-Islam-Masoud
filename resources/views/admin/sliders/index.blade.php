@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
                     <div class="form-group breadcrum-right">
                         @can('Add Slider')
                             <a href="{{ route('admin.sliders.create') }}" id="addRow"
@@ -28,7 +28,7 @@
                                 <i class="feather icon-plus"></i>{{ trans('main_translation.AddSlider') }}</a>
                         @endcan
                     </div>
-                </div> --}}
+                </div>
             </div>
             <div class="content-body">
                 <!-- Sliders List table -->
@@ -94,7 +94,7 @@
                                                                                     <a href="{{ route('admin.sliders.edit', $slider->id) }}"
                                                                                         class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1 waves-effect waves-light">{{ trans('main_translation.Edit') }}</a>
                                                                                 @endcan
-                                                                                {{-- @can('Delete Slider')
+                                                                                @can('Delete Slider')
                                                                                     <form class="form-inline" method="post"
                                                                                         action="{{ route('admin.sliders.destroy', $slider->id) }}">
                                                                                         @csrf
@@ -102,7 +102,7 @@
                                                                                         <button type="submit"
                                                                                             class="btn btn-danger glow mb-1 mb-sm-0 mr-0 mr-sm-1 waves-effect waves-light show_confirm">{{ trans('main_translation.Delete') }}</button>
                                                                                     </form>
-                                                                                @endcan --}}
+                                                                                @endcan
 
                                                                             </div>
                                                                         </td>

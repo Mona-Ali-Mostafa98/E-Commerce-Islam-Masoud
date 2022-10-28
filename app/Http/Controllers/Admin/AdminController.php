@@ -7,10 +7,11 @@ use App\Http\Requests\Admins\StoreAdminRequest;
 use App\Http\Requests\Admins\UpdateAdminRequest;
 use App\Models\Admin;
 use App\Traits\UploadImageTrait;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -97,6 +98,12 @@ class AdminController extends Controller
 
         if(!$request->hasFile('image')){
             unset($data['image']);
+        }
+
+        if(!empty($data['password'])){
+            $data['password'] = $data['password'];
+        }else{
+            $data = Arr::except($data,array('password'));
         }
 
         $admin->update($data);
